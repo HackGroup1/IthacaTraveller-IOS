@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F619A8AB2B090DDC000D499B /* LowerFalls.mov in Resources */ = {isa = PBXBuildFile; fileRef = F619A8AA2B090DDC000D499B /* LowerFalls.mov */; };
 		F6CC1CFF2B080C4F00B135D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1CFE2B080C4F00B135D5 /* AppDelegate.swift */; };
 		F6CC1D012B080C4F00B135D5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1D002B080C4F00B135D5 /* SceneDelegate.swift */; };
 		F6CC1D032B080C4F00B135D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1D022B080C4F00B135D5 /* ViewController.swift */; };
@@ -17,15 +18,16 @@
 		F6CC1D1B2B080E3B00B135D5 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1D1A2B080E3B00B135D5 /* UIColor+Extension.swift */; };
 		F6CC1D1D2B080E7300B135D5 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1D1C2B080E7300B135D5 /* UIFont+Extension.swift */; };
 		F6CC1D1F2B080F1000B135D5 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1D1E2B080F1000B135D5 /* FilterCollectionViewCell.swift */; };
-		F6CC1D222B0906FB00B135D5 /* LowerFalls.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6CC1D212B0906FB00B135D5 /* LowerFalls.mov */; };
 		F6CC1D252B09085100B135D5 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = F6CC1D242B09085100B135D5 /* SDWebImage */; };
 		F6CC1D272B09085100B135D5 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F6CC1D262B09085100B135D5 /* SDWebImageMapKit */; };
 		F6CC1D2A2B09085A00B135D5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F6CC1D292B09085A00B135D5 /* SnapKit */; };
 		F6CC1D2C2B09085A00B135D5 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = F6CC1D2B2B09085A00B135D5 /* SnapKit-Dynamic */; };
 		F6CC1D2F2B09086300B135D5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F6CC1D2E2B09086300B135D5 /* Alamofire */; };
+		F6FC12EF2B097BB400CFC19F /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC12EE2B097BB400CFC19F /* Filter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F619A8AA2B090DDC000D499B /* LowerFalls.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = LowerFalls.mov; sourceTree = "<group>"; };
 		F6CC1CFB2B080C4F00B135D5 /* Ithaca map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ithaca map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6CC1CFE2B080C4F00B135D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6CC1D002B080C4F00B135D5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,7 +40,7 @@
 		F6CC1D1A2B080E3B00B135D5 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		F6CC1D1C2B080E7300B135D5 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		F6CC1D1E2B080F1000B135D5 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
-		F6CC1D212B0906FB00B135D5 /* LowerFalls.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = LowerFalls.mov; sourceTree = "<group>"; };
+		F6FC12EE2B097BB400CFC19F /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 		F6CC1CFD2B080C4F00B135D5 /* Ithaca map */ = {
 			isa = PBXGroup;
 			children = (
+				F6FC12ED2B097B9B00CFC19F /* NetworkManager */,
 				F6CC1D122B080D9A00B135D5 /* ViewController */,
 				F6CC1D132B080DB100B135D5 /* ViewCollectionCell */,
 				F6CC1D162B080DFB00B135D5 /* Data */,
@@ -83,7 +86,7 @@
 				F6CC1D002B080C4F00B135D5 /* SceneDelegate.swift */,
 				F6CC1CFE2B080C4F00B135D5 /* AppDelegate.swift */,
 				F6CC1D072B080C5000B135D5 /* Assets.xcassets */,
-				F6CC1D212B0906FB00B135D5 /* LowerFalls.mov */,
+				F619A8AA2B090DDC000D499B /* LowerFalls.mov */,
 				F6CC1D092B080C5000B135D5 /* LaunchScreen.storyboard */,
 				F6CC1D0C2B080C5000B135D5 /* Info.plist */,
 			);
@@ -122,6 +125,14 @@
 				F6CC1D1C2B080E7300B135D5 /* UIFont+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		F6FC12ED2B097B9B00CFC19F /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				F6FC12EE2B097BB400CFC19F /* Filter.swift */,
+			);
+			path = NetworkManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,9 +205,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F619A8AB2B090DDC000D499B /* LowerFalls.mov in Resources */,
 				F6CC1D0B2B080C5000B135D5 /* LaunchScreen.storyboard in Resources */,
 				F6CC1D082B080C5000B135D5 /* Assets.xcassets in Resources */,
-				F6CC1D222B0906FB00B135D5 /* LowerFalls.mov in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +225,7 @@
 				F6CC1D1B2B080E3B00B135D5 /* UIColor+Extension.swift in Sources */,
 				F6CC1D152B080DED00B135D5 /* LF_ViewController.swift in Sources */,
 				F6CC1D1F2B080F1000B135D5 /* FilterCollectionViewCell.swift in Sources */,
+				F6FC12EF2B097BB400CFC19F /* Filter.swift in Sources */,
 				F6CC1D012B080C4F00B135D5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

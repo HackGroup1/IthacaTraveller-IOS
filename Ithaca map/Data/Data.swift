@@ -5,12 +5,19 @@
 //  Created by Qiandao Liu on 11/17/23.
 //
 
+struct Id: Codable {
+    let id: [Int]
+}
+
 struct Map: Codable {
+    let id: Int
+    let longitude: Double
+    let latitude: Double
     let name: String
     let description: String
     let position: String
-    let imageUrl: String
-    let feature: String
+    let imageUrl: [String]
+    let feature: [String]
 }
 
 struct Post: Codable {
