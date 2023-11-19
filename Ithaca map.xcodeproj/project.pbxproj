@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F619A8AB2B090DDC000D499B /* LowerFalls.mov in Resources */ = {isa = PBXBuildFile; fileRef = F619A8AA2B090DDC000D499B /* LowerFalls.mov */; };
 		F6CC1CFF2B080C4F00B135D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1CFE2B080C4F00B135D5 /* AppDelegate.swift */; };
 		F6CC1D012B080C4F00B135D5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1D002B080C4F00B135D5 /* SceneDelegate.swift */; };
 		F6CC1D032B080C4F00B135D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1D022B080C4F00B135D5 /* ViewController.swift */; };
@@ -24,10 +23,18 @@
 		F6CC1D2C2B09085A00B135D5 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = F6CC1D2B2B09085A00B135D5 /* SnapKit-Dynamic */; };
 		F6CC1D2F2B09086300B135D5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F6CC1D2E2B09086300B135D5 /* Alamofire */; };
 		F6FC12EF2B097BB400CFC19F /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC12EE2B097BB400CFC19F /* Filter.swift */; };
+		F6FC12F12B09D37600CFC19F /* IthacaFalls.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6FC12F02B09D37600CFC19F /* IthacaFalls.mov */; };
+		F6FC12F32B09D38E00CFC19F /* IF_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC12F22B09D38E00CFC19F /* IF_ViewController.swift */; };
+		F6FC12F72B09D7C200CFC19F /* LowerFalls.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6FC12F62B09D7C200CFC19F /* LowerFalls.mov */; };
+		F6FC12F92B09D96200CFC19F /* StewartPark.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6FC12F82B09D96200CFC19F /* StewartPark.mov */; };
+		F6FC12FB2B09D97200CFC19F /* SP_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC12FA2B09D97200CFC19F /* SP_ViewController.swift */; };
+		F6FC12FD2B09DB0500CFC19F /* SunsetPark.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6FC12FC2B09DB0500CFC19F /* SunsetPark.mov */; };
+		F6FC12FF2B09DB4200CFC19F /* SUN_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC12FE2B09DB4200CFC19F /* SUN_ViewController.swift */; };
+		F6FC13012B09DC9D00CFC19F /* Jennings.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6FC13002B09DC9D00CFC19F /* Jennings.mov */; };
+		F6FC13032B09DD2C00CFC19F /* JPP_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC13022B09DD2C00CFC19F /* JPP_ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F619A8AA2B090DDC000D499B /* LowerFalls.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = LowerFalls.mov; sourceTree = "<group>"; };
 		F6CC1CFB2B080C4F00B135D5 /* Ithaca map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ithaca map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6CC1CFE2B080C4F00B135D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6CC1D002B080C4F00B135D5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +48,15 @@
 		F6CC1D1C2B080E7300B135D5 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		F6CC1D1E2B080F1000B135D5 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		F6FC12EE2B097BB400CFC19F /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		F6FC12F02B09D37600CFC19F /* IthacaFalls.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = IthacaFalls.mov; sourceTree = "<group>"; };
+		F6FC12F22B09D38E00CFC19F /* IF_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IF_ViewController.swift; sourceTree = "<group>"; };
+		F6FC12F62B09D7C200CFC19F /* LowerFalls.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = LowerFalls.mov; sourceTree = "<group>"; };
+		F6FC12F82B09D96200CFC19F /* StewartPark.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = StewartPark.mov; sourceTree = "<group>"; };
+		F6FC12FA2B09D97200CFC19F /* SP_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SP_ViewController.swift; sourceTree = "<group>"; };
+		F6FC12FC2B09DB0500CFC19F /* SunsetPark.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = SunsetPark.mov; sourceTree = "<group>"; };
+		F6FC12FE2B09DB4200CFC19F /* SUN_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUN_ViewController.swift; sourceTree = "<group>"; };
+		F6FC13002B09DC9D00CFC19F /* Jennings.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Jennings.mov; sourceTree = "<group>"; };
+		F6FC13022B09DD2C00CFC19F /* JPP_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPP_ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +102,11 @@
 				F6CC1D002B080C4F00B135D5 /* SceneDelegate.swift */,
 				F6CC1CFE2B080C4F00B135D5 /* AppDelegate.swift */,
 				F6CC1D072B080C5000B135D5 /* Assets.xcassets */,
-				F619A8AA2B090DDC000D499B /* LowerFalls.mov */,
+				F6FC12F62B09D7C200CFC19F /* LowerFalls.mov */,
+				F6FC12F02B09D37600CFC19F /* IthacaFalls.mov */,
+				F6FC12F82B09D96200CFC19F /* StewartPark.mov */,
+				F6FC12FC2B09DB0500CFC19F /* SunsetPark.mov */,
+				F6FC13002B09DC9D00CFC19F /* Jennings.mov */,
 				F6CC1D092B080C5000B135D5 /* LaunchScreen.storyboard */,
 				F6CC1D0C2B080C5000B135D5 /* Info.plist */,
 			);
@@ -98,6 +118,10 @@
 			children = (
 				F6CC1D022B080C4F00B135D5 /* ViewController.swift */,
 				F6CC1D142B080DED00B135D5 /* LF_ViewController.swift */,
+				F6FC12F22B09D38E00CFC19F /* IF_ViewController.swift */,
+				F6FC12FA2B09D97200CFC19F /* SP_ViewController.swift */,
+				F6FC12FE2B09DB4200CFC19F /* SUN_ViewController.swift */,
+				F6FC13022B09DD2C00CFC19F /* JPP_ViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -205,9 +229,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F619A8AB2B090DDC000D499B /* LowerFalls.mov in Resources */,
+				F6FC12F72B09D7C200CFC19F /* LowerFalls.mov in Resources */,
 				F6CC1D0B2B080C5000B135D5 /* LaunchScreen.storyboard in Resources */,
 				F6CC1D082B080C5000B135D5 /* Assets.xcassets in Resources */,
+				F6FC13012B09DC9D00CFC19F /* Jennings.mov in Resources */,
+				F6FC12F92B09D96200CFC19F /* StewartPark.mov in Resources */,
+				F6FC12FD2B09DB0500CFC19F /* SunsetPark.mov in Resources */,
+				F6FC12F12B09D37600CFC19F /* IthacaFalls.mov in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,10 +249,14 @@
 				F6CC1D1D2B080E7300B135D5 /* UIFont+Extension.swift in Sources */,
 				F6CC1D032B080C4F00B135D5 /* ViewController.swift in Sources */,
 				F6CC1D182B080E1000B135D5 /* Data.swift in Sources */,
+				F6FC13032B09DD2C00CFC19F /* JPP_ViewController.swift in Sources */,
+				F6FC12FF2B09DB4200CFC19F /* SUN_ViewController.swift in Sources */,
 				F6CC1CFF2B080C4F00B135D5 /* AppDelegate.swift in Sources */,
+				F6FC12FB2B09D97200CFC19F /* SP_ViewController.swift in Sources */,
 				F6CC1D1B2B080E3B00B135D5 /* UIColor+Extension.swift in Sources */,
 				F6CC1D152B080DED00B135D5 /* LF_ViewController.swift in Sources */,
 				F6CC1D1F2B080F1000B135D5 /* FilterCollectionViewCell.swift in Sources */,
+				F6FC12F32B09D38E00CFC19F /* IF_ViewController.swift in Sources */,
 				F6FC12EF2B097BB400CFC19F /* Filter.swift in Sources */,
 				F6CC1D012B080C4F00B135D5 /* SceneDelegate.swift in Sources */,
 			);

@@ -13,7 +13,7 @@ class NetworkManager {
     /// Shared singleton instance
     static let shared = NetworkManager()
     
-    private let sendFilter: String = "http://34.86.14.173/api/features/Waterfall/locations/"
+//    private let sendFilter: String = "http://34.86.14.173/api/features/Waterfall/locations/"
     
     
     // JSON decoder：
@@ -22,20 +22,19 @@ class NetworkManager {
     private init() { }
     
     // 得到后段的filter对应的所有location Id
-    func fetchRoster(for filter: String, completion: @escaping ([Id]) -> Void) {  // return a list
-        
-        AF.request(sendFilter, method:  .get)  // a get method: get
+    func fetchRoster(for filter: String, completion: @escaping ([Id]) -> Void) {
+        let baseURL = "http://34.86.14.173/api/features/"
+        let fullURL = baseURL + "\(filter)/locations/"
+        AF.request(fullURL, method: .get)
             .validate()
-            .responseDecodable(of: [Id].self, decoder: decoder) { response in
-                // resoponse:
+            .responseDecodable(of: [Id].self) { response in
                 switch response.result {
-                case .success(let members):
-                    completion(members)
+                case .success(let ids):
+                    completion(ids)
                 case .failure(let error):
                     print("Error in NetworkManager.fetchRoster: \(error.localizedDescription)")
                     completion([])
                 }
-                
             }
     }
     

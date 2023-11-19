@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     private let IFbutton = UIButton(type: .custom)
     private let SPbutton = UIButton(type: .custom)
     private let SUNbutton = UIButton(type: .custom)
-    private let SWbutton = UIButton(type: .custom)
+    private let JPPbutton = UIButton(type: .custom)
     
     
     // MARK: - Properties (data)
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
         IFbutton.tag = 2
         SPbutton.tag = 3
         SUNbutton.tag = 4
-        SWbutton.tag = 5
+        JPPbutton.tag = 5
         
         // MARK: objects on main view
         
@@ -112,25 +112,45 @@ class ViewController: UIViewController {
         ])
         
         // SWbutton: Sapsucker Woods
-        view.addSubview(SWbutton)
-        view.bringSubviewToFront(SWbutton)
-        SWbutton.setImage(UIImage(named: "map_pin"), for: .normal)
-        SWbutton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(JPPbutton)
+        view.bringSubviewToFront(JPPbutton)
+        JPPbutton.setImage(UIImage(named: "map_pin"), for: .normal)
+        JPPbutton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            SWbutton.topAnchor.constraint(equalTo: view.topAnchor, constant: 760),
-            SWbutton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 260),
-            SWbutton.widthAnchor.constraint(equalToConstant: 20),
-            SWbutton.heightAnchor.constraint(equalToConstant: 28)
+            JPPbutton.topAnchor.constraint(equalTo: view.topAnchor, constant: 760),
+            JPPbutton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 260),
+            JPPbutton.widthAnchor.constraint(equalToConstant: 20),
+            JPPbutton.heightAnchor.constraint(equalToConstant: 28)
         ])
         
         
         LFbutton.addTarget(self, action: #selector(LFButtonTapped), for: .touchUpInside)
+        IFbutton.addTarget(self, action: #selector(IFButtonTapped), for: .touchUpInside)
+        SPbutton.addTarget(self, action: #selector(SPButtonTapped), for: .touchUpInside)
+        SUNbutton.addTarget(self, action: #selector(SUNButtonTapped), for: .touchUpInside)
+        JPPbutton.addTarget(self, action: #selector(JPPButtonTapped), for: .touchUpInside)
         
         setupHorizontalCollectionView()
     }
     
     @objc func LFButtonTapped() {
-        let sampleVC = LowerFalls_ViewController()
+        let sampleVC = LF_ViewController()
+        navigationController?.pushViewController(sampleVC, animated: false)
+    }
+    @objc func IFButtonTapped() {
+        let sampleVC = IF_ViewController()
+        navigationController?.pushViewController(sampleVC, animated: false)
+    }
+    @objc func SPButtonTapped() {
+        let sampleVC = SP_ViewController()
+        navigationController?.pushViewController(sampleVC, animated: false)
+    }
+    @objc func SUNButtonTapped() {
+        let sampleVC = SUN_ViewController()
+        navigationController?.pushViewController(sampleVC, animated: false)
+    }
+    @objc func JPPButtonTapped() {
+        let sampleVC = JPP_ViewController()
         navigationController?.pushViewController(sampleVC, animated: false)
     }
     
@@ -194,7 +214,7 @@ extension ViewController: UICollectionViewDelegate {
                 print("Filtered button IDs: \(ids)")
                 guard let self = self else { return }
                 DispatchQueue.main.async {
-                    let buttons = [self.LFbutton, self.IFbutton, self.SPbutton, self.SUNbutton, self.SWbutton]
+                    let buttons = [self.LFbutton, self.IFbutton, self.SPbutton, self.SUNbutton, self.JPPbutton]
                     for button in buttons {
                         button.isHidden = !ids.contains(button.tag)
                     }
@@ -228,17 +248,17 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     private func filteredRecipes(for filter: String, completion: @escaping ([Int]) -> Void) {
+        // 如果是All就显示所有的location
         if filter == "All" {
-            // 如果是 "All"，直接返回所有 ID
+            print("selected: All")
             let allIds = ViewController.dummyData.map { $0.id }
             completion(allIds)
-            print("Filtered Recipes for 'All': \(allIds)")
         } else {
-            // 否则，从网络获取数据
+        // 如果是特定的filter就从后端去要API
+            print("selected: \(filter)")
             NetworkManager.shared.fetchRoster(for: filter) { ids in
                 let filteredIds = ids.flatMap { $0.id }
                 completion(filteredIds)
-                print("Filtered Recipes for '\(filter)': \(filteredIds)")
             }
         }
     }
@@ -248,12 +268,14 @@ extension ViewController: UICollectionViewDataSource {
 
 extension ViewController {
     static var dummyData: [Map] = [
-        Map(id: 1, longitude: 42.452851, latitude: 76.4916, name: "Lower Fall", description: "A good swim place", position: "Park Rd, Ithaca, NY 14850", imageUrl: ["https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F8368708.jpg&q=60&c=sc&orient=true&poi=auto&h=512"], feature: ["Fall"]
+        Map(id: 1, longitude: 42.452851, latitude: 76.4916, name: "Lower Fall", description: "A good swim place", position: "Park Rd, Ithaca, NY 14850", imageUrl: ["https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F8368708.jpg&q=60&c=sc&orient=true&poi=auto&h=512"], feature: ["Fall", "Lake"]
             ),
         Map(id: 2, longitude: 42.452851, latitude: 76.4916, name: "Ithaca Fall", description: "The biggest Fall in ithaca", position: "Ithaca Falls Trail, Ithaca, NY 14850", imageUrl: ["https://www.allrecipes.com/thmb/wRSDpUgu8VR2PpQtjGq97cuk8Fo=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/237311-slow-cooker-mac-and-cheese-DDMFS-4x3-9b4a15f2c3344c1da22b034bc3b35683.jpg"], feature: ["Fall"]),
-        Map(id: 3, longitude: 42.452851, latitude: 76.4916, name: "Stewart Park", description: "Good place for bird watching", position: "1 James L Gibbs Dr, Ithaca, NY 14850", imageUrl: [], feature: ["Park"]),
+        Map(id: 3, longitude: 42.452851, latitude: 76.4916, name: "Stewart Park", description: "Good place for bird watching", position: "1 James L Gibbs Dr, Ithaca, NY 14850", imageUrl: [], feature: ["Park", "Lake"]),
         Map(id: 4, longitude: 42.452851, latitude: 76.4916, name: "Sunset Park", description: "best place to see sunset!", position: "200 Sunset Park Dr, Ithaca, NY 14850", imageUrl: [], feature: ["Park"]),
-        Map(id: 5, longitude: 42.452851, latitude: 76.4916, name: "Jenning Pond Park", description: "to see a few birds! Lots of Chickadees, Downey, Hairy & Pileated Woodpeckers. Fun watching the Heron and Mallards in the pond.", position: "Jennings Pond Park, Jennings Pond Rd, Ithaca, NY 14850", imageUrl: [], feature: ["Park"])
+        Map(id: 5, longitude: 42.452851, latitude: 76.4916, name: "Jenning Pond Park", description: "to see a few birds! Lots of Chickadees, Downey, Hairy & Pileated Woodpeckers. Fun watching the Heron and Mallards in the pond.", position: "Jennings Pond Park, Jennings Pond Rd, Ithaca, NY 14850", imageUrl: [], feature: ["Park", "Lake"]),
+        Map(id: 6, longitude: 42.452851, latitude: 76.4916, name: "Lake Treman Trail", description: "None", position: "Lake Treman Trail, Ithaca, NY 14850", imageUrl: [], feature: ["Lake"]),
+//        Map(id: 7, longitude: 42.452851, latitude: 76.4916, name: <#T##String#>, description: <#T##String#>, position: <#T##String#>, imageUrl: <#T##[String]#>, feature: <#T##[String]#>)
     ]
 }
 

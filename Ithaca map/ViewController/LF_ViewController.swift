@@ -10,9 +10,9 @@ import AVFoundation
 import SDWebImage
 import UIKit
 
-class LowerFalls_ViewController: UIViewController {
+class LF_ViewController: UIViewController {
     
-    // MARK: - Properties (view) 第一步，创建一个collectionView
+    // MARK: - Properties (view) 创建一个collectionView
         
     private var player: AVPlayer?
     private var playerLayer: AVPlayerLayer?
@@ -43,7 +43,7 @@ class LowerFalls_ViewController: UIViewController {
         
         playerItem.preferredForwardBufferDuration = 1  // 预加载1秒
 
-        // 观察播放器状态
+        // 播放器状态
         playerItem.addObserver(self, forKeyPath: "status", options: [.new, .old], context: nil)
 
         playerLayer = AVPlayerLayer(player: player)
