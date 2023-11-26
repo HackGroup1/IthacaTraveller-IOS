@@ -32,6 +32,8 @@
 		F6FC12FF2B09DB4200CFC19F /* SUN_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC12FE2B09DB4200CFC19F /* SUN_ViewController.swift */; };
 		F6FC13012B09DC9D00CFC19F /* Jennings.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6FC13002B09DC9D00CFC19F /* Jennings.mov */; };
 		F6FC13032B09DD2C00CFC19F /* JPP_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC13022B09DD2C00CFC19F /* JPP_ViewController.swift */; };
+		F6FC13052B0E3CD900CFC19F /* Create_account.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC13042B0E3CD900CFC19F /* Create_account.swift */; };
+		F6FC13092B0E4D6F00CFC19F /* Detail_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC13082B0E4D6F00CFC19F /* Detail_ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,8 @@
 		F6FC12FE2B09DB4200CFC19F /* SUN_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUN_ViewController.swift; sourceTree = "<group>"; };
 		F6FC13002B09DC9D00CFC19F /* Jennings.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Jennings.mov; sourceTree = "<group>"; };
 		F6FC13022B09DD2C00CFC19F /* JPP_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPP_ViewController.swift; sourceTree = "<group>"; };
+		F6FC13042B0E3CD900CFC19F /* Create_account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Create_account.swift; sourceTree = "<group>"; };
+		F6FC13082B0E4D6F00CFC19F /* Detail_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail_ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,12 +120,14 @@
 		F6CC1D122B080D9A00B135D5 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F6FC13042B0E3CD900CFC19F /* Create_account.swift */,
 				F6CC1D022B080C4F00B135D5 /* ViewController.swift */,
 				F6CC1D142B080DED00B135D5 /* LF_ViewController.swift */,
 				F6FC12F22B09D38E00CFC19F /* IF_ViewController.swift */,
 				F6FC12FA2B09D97200CFC19F /* SP_ViewController.swift */,
 				F6FC12FE2B09DB4200CFC19F /* SUN_ViewController.swift */,
 				F6FC13022B09DD2C00CFC19F /* JPP_ViewController.swift */,
+				F6FC13082B0E4D6F00CFC19F /* Detail_ViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -249,9 +255,11 @@
 				F6CC1D1D2B080E7300B135D5 /* UIFont+Extension.swift in Sources */,
 				F6CC1D032B080C4F00B135D5 /* ViewController.swift in Sources */,
 				F6CC1D182B080E1000B135D5 /* Data.swift in Sources */,
+				F6FC13052B0E3CD900CFC19F /* Create_account.swift in Sources */,
 				F6FC13032B09DD2C00CFC19F /* JPP_ViewController.swift in Sources */,
 				F6FC12FF2B09DB4200CFC19F /* SUN_ViewController.swift in Sources */,
 				F6CC1CFF2B080C4F00B135D5 /* AppDelegate.swift in Sources */,
+				F6FC13092B0E4D6F00CFC19F /* Detail_ViewController.swift in Sources */,
 				F6FC12FB2B09D97200CFC19F /* SP_ViewController.swift in Sources */,
 				F6CC1D1B2B080E3B00B135D5 /* UIColor+Extension.swift in Sources */,
 				F6CC1D152B080DED00B135D5 /* LF_ViewController.swift in Sources */,

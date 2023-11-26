@@ -39,7 +39,7 @@ class FilterCollectionViewCell: UICollectionViewCell {
     
     func configure(res: Map) {
         
-        let title = res.feature.first // 需要改
+        let title = res.feature.first // 需要改，也许可以不需要
         feature.setTitle(title, for: .normal)
         
     }

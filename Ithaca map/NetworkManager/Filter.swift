@@ -13,9 +13,6 @@ class NetworkManager {
     /// Shared singleton instance
     static let shared = NetworkManager()
     
-//    private let sendFilter: String = "http://34.86.14.173/api/features/Waterfall/locations/"
-    
-    
     // JSON decoder：
     private let decoder = JSONDecoder()
     

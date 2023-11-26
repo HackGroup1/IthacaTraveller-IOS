@@ -20,6 +20,12 @@ struct Map: Codable {
     let feature: [String]
 }
 
+struct Account: Codable {
+    let id: String
+    let username: String
+    let password: String
+}
+
 struct Post: Codable {
     let id: String
     let name: String

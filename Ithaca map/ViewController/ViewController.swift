@@ -275,7 +275,6 @@ extension ViewController {
         Map(id: 4, longitude: 42.452851, latitude: 76.4916, name: "Sunset Park", description: "best place to see sunset!", position: "200 Sunset Park Dr, Ithaca, NY 14850", imageUrl: [], feature: ["Park"]),
         Map(id: 5, longitude: 42.452851, latitude: 76.4916, name: "Jenning Pond Park", description: "to see a few birds! Lots of Chickadees, Downey, Hairy & Pileated Woodpeckers. Fun watching the Heron and Mallards in the pond.", position: "Jennings Pond Park, Jennings Pond Rd, Ithaca, NY 14850", imageUrl: [], feature: ["Park", "Lake"]),
         Map(id: 6, longitude: 42.452851, latitude: 76.4916, name: "Lake Treman Trail", description: "None", position: "Lake Treman Trail, Ithaca, NY 14850", imageUrl: [], feature: ["Lake"]),
-//        Map(id: 7, longitude: 42.452851, latitude: 76.4916, name: <#T##String#>, description: <#T##String#>, position: <#T##String#>, imageUrl: <#T##[String]#>, feature: <#T##[String]#>)
     ]
 }
 
