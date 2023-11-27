@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F6221D3E2B13ECE50041C2E6 /* PictureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6221D3D2B13ECE50041C2E6 /* PictureCollectionViewCell.swift */; };
+		F6221D402B1442D20041C2E6 /* Treman.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D3F2B1442D20041C2E6 /* Treman.mov */; };
+		F6221D422B1444700041C2E6 /* Buttermilk.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D412B1444700041C2E6 /* Buttermilk.mov */; };
+		F6221D462B1447DC0041C2E6 /* Wells.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D452B1447DC0041C2E6 /* Wells.mov */; };
+		F6221D482B1449970041C2E6 /* Potter.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D472B1449960041C2E6 /* Potter.mov */; };
+		F6221D4A2B144ACA0041C2E6 /* Kings.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D492B144ACA0041C2E6 /* Kings.mov */; };
 		F6CC1CFF2B080C4F00B135D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1CFE2B080C4F00B135D5 /* AppDelegate.swift */; };
 		F6CC1D012B080C4F00B135D5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1D002B080C4F00B135D5 /* SceneDelegate.swift */; };
 		F6CC1D032B080C4F00B135D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1D022B080C4F00B135D5 /* ViewController.swift */; };
 		F6CC1D082B080C5000B135D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6CC1D072B080C5000B135D5 /* Assets.xcassets */; };
 		F6CC1D0B2B080C5000B135D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6CC1D092B080C5000B135D5 /* LaunchScreen.storyboard */; };
-		F6CC1D152B080DED00B135D5 /* LF_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1D142B080DED00B135D5 /* LF_ViewController.swift */; };
 		F6CC1D182B080E1000B135D5 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1D172B080E1000B135D5 /* Data.swift */; };
 		F6CC1D1B2B080E3B00B135D5 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1D1A2B080E3B00B135D5 /* UIColor+Extension.swift */; };
 		F6CC1D1D2B080E7300B135D5 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1D1C2B080E7300B135D5 /* UIFont+Extension.swift */; };
@@ -22,21 +27,22 @@
 		F6CC1D2A2B09085A00B135D5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F6CC1D292B09085A00B135D5 /* SnapKit */; };
 		F6CC1D2C2B09085A00B135D5 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = F6CC1D2B2B09085A00B135D5 /* SnapKit-Dynamic */; };
 		F6CC1D2F2B09086300B135D5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F6CC1D2E2B09086300B135D5 /* Alamofire */; };
-		F6FC12EF2B097BB400CFC19F /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC12EE2B097BB400CFC19F /* Filter.swift */; };
 		F6FC12F12B09D37600CFC19F /* IthacaFalls.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6FC12F02B09D37600CFC19F /* IthacaFalls.mov */; };
-		F6FC12F32B09D38E00CFC19F /* IF_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC12F22B09D38E00CFC19F /* IF_ViewController.swift */; };
 		F6FC12F72B09D7C200CFC19F /* LowerFalls.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6FC12F62B09D7C200CFC19F /* LowerFalls.mov */; };
 		F6FC12F92B09D96200CFC19F /* StewartPark.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6FC12F82B09D96200CFC19F /* StewartPark.mov */; };
-		F6FC12FB2B09D97200CFC19F /* SP_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC12FA2B09D97200CFC19F /* SP_ViewController.swift */; };
 		F6FC12FD2B09DB0500CFC19F /* SunsetPark.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6FC12FC2B09DB0500CFC19F /* SunsetPark.mov */; };
-		F6FC12FF2B09DB4200CFC19F /* SUN_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC12FE2B09DB4200CFC19F /* SUN_ViewController.swift */; };
 		F6FC13012B09DC9D00CFC19F /* Jennings.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6FC13002B09DC9D00CFC19F /* Jennings.mov */; };
-		F6FC13032B09DD2C00CFC19F /* JPP_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC13022B09DD2C00CFC19F /* JPP_ViewController.swift */; };
 		F6FC13052B0E3CD900CFC19F /* Create_account.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC13042B0E3CD900CFC19F /* Create_account.swift */; };
 		F6FC13092B0E4D6F00CFC19F /* Detail_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC13082B0E4D6F00CFC19F /* Detail_ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F6221D3D2B13ECE50041C2E6 /* PictureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCollectionViewCell.swift; sourceTree = "<group>"; };
+		F6221D3F2B1442D20041C2E6 /* Treman.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Treman.mov; sourceTree = "<group>"; };
+		F6221D412B1444700041C2E6 /* Buttermilk.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Buttermilk.mov; sourceTree = "<group>"; };
+		F6221D452B1447DC0041C2E6 /* Wells.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = Wells.mov; path = ../../Wells.mov; sourceTree = "<group>"; };
+		F6221D472B1449960041C2E6 /* Potter.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Potter.mov; sourceTree = "<group>"; };
+		F6221D492B144ACA0041C2E6 /* Kings.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Kings.mov; sourceTree = "<group>"; };
 		F6CC1CFB2B080C4F00B135D5 /* Ithaca map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ithaca map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6CC1CFE2B080C4F00B135D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6CC1D002B080C4F00B135D5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,21 +50,15 @@
 		F6CC1D072B080C5000B135D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F6CC1D0A2B080C5000B135D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F6CC1D0C2B080C5000B135D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F6CC1D142B080DED00B135D5 /* LF_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LF_ViewController.swift; sourceTree = "<group>"; };
 		F6CC1D172B080E1000B135D5 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		F6CC1D1A2B080E3B00B135D5 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		F6CC1D1C2B080E7300B135D5 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		F6CC1D1E2B080F1000B135D5 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
-		F6FC12EE2B097BB400CFC19F /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		F6FC12F02B09D37600CFC19F /* IthacaFalls.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = IthacaFalls.mov; sourceTree = "<group>"; };
-		F6FC12F22B09D38E00CFC19F /* IF_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IF_ViewController.swift; sourceTree = "<group>"; };
 		F6FC12F62B09D7C200CFC19F /* LowerFalls.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = LowerFalls.mov; sourceTree = "<group>"; };
 		F6FC12F82B09D96200CFC19F /* StewartPark.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = StewartPark.mov; sourceTree = "<group>"; };
-		F6FC12FA2B09D97200CFC19F /* SP_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SP_ViewController.swift; sourceTree = "<group>"; };
 		F6FC12FC2B09DB0500CFC19F /* SunsetPark.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = SunsetPark.mov; sourceTree = "<group>"; };
-		F6FC12FE2B09DB4200CFC19F /* SUN_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUN_ViewController.swift; sourceTree = "<group>"; };
 		F6FC13002B09DC9D00CFC19F /* Jennings.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Jennings.mov; sourceTree = "<group>"; };
-		F6FC13022B09DD2C00CFC19F /* JPP_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPP_ViewController.swift; sourceTree = "<group>"; };
 		F6FC13042B0E3CD900CFC19F /* Create_account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Create_account.swift; sourceTree = "<group>"; };
 		F6FC13082B0E4D6F00CFC19F /* Detail_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail_ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,7 +98,6 @@
 		F6CC1CFD2B080C4F00B135D5 /* Ithaca map */ = {
 			isa = PBXGroup;
 			children = (
-				F6FC12ED2B097B9B00CFC19F /* NetworkManager */,
 				F6CC1D122B080D9A00B135D5 /* ViewController */,
 				F6CC1D132B080DB100B135D5 /* ViewCollectionCell */,
 				F6CC1D162B080DFB00B135D5 /* Data */,
@@ -108,7 +107,12 @@
 				F6CC1D072B080C5000B135D5 /* Assets.xcassets */,
 				F6FC12F62B09D7C200CFC19F /* LowerFalls.mov */,
 				F6FC12F02B09D37600CFC19F /* IthacaFalls.mov */,
+				F6221D452B1447DC0041C2E6 /* Wells.mov */,
+				F6221D472B1449960041C2E6 /* Potter.mov */,
 				F6FC12F82B09D96200CFC19F /* StewartPark.mov */,
+				F6221D492B144ACA0041C2E6 /* Kings.mov */,
+				F6221D412B1444700041C2E6 /* Buttermilk.mov */,
+				F6221D3F2B1442D20041C2E6 /* Treman.mov */,
 				F6FC12FC2B09DB0500CFC19F /* SunsetPark.mov */,
 				F6FC13002B09DC9D00CFC19F /* Jennings.mov */,
 				F6CC1D092B080C5000B135D5 /* LaunchScreen.storyboard */,
@@ -122,11 +126,6 @@
 			children = (
 				F6FC13042B0E3CD900CFC19F /* Create_account.swift */,
 				F6CC1D022B080C4F00B135D5 /* ViewController.swift */,
-				F6CC1D142B080DED00B135D5 /* LF_ViewController.swift */,
-				F6FC12F22B09D38E00CFC19F /* IF_ViewController.swift */,
-				F6FC12FA2B09D97200CFC19F /* SP_ViewController.swift */,
-				F6FC12FE2B09DB4200CFC19F /* SUN_ViewController.swift */,
-				F6FC13022B09DD2C00CFC19F /* JPP_ViewController.swift */,
 				F6FC13082B0E4D6F00CFC19F /* Detail_ViewController.swift */,
 			);
 			path = ViewController;
@@ -136,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				F6CC1D1E2B080F1000B135D5 /* FilterCollectionViewCell.swift */,
+				F6221D3D2B13ECE50041C2E6 /* PictureCollectionViewCell.swift */,
 			);
 			path = ViewCollectionCell;
 			sourceTree = "<group>";
@@ -155,14 +155,6 @@
 				F6CC1D1C2B080E7300B135D5 /* UIFont+Extension.swift */,
 			);
 			path = Extension;
-			sourceTree = "<group>";
-		};
-		F6FC12ED2B097B9B00CFC19F /* NetworkManager */ = {
-			isa = PBXGroup;
-			children = (
-				F6FC12EE2B097BB400CFC19F /* Filter.swift */,
-			);
-			path = NetworkManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,9 +227,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6221D482B1449970041C2E6 /* Potter.mov in Resources */,
 				F6FC12F72B09D7C200CFC19F /* LowerFalls.mov in Resources */,
+				F6221D462B1447DC0041C2E6 /* Wells.mov in Resources */,
+				F6221D402B1442D20041C2E6 /* Treman.mov in Resources */,
 				F6CC1D0B2B080C5000B135D5 /* LaunchScreen.storyboard in Resources */,
+				F6221D4A2B144ACA0041C2E6 /* Kings.mov in Resources */,
 				F6CC1D082B080C5000B135D5 /* Assets.xcassets in Resources */,
+				F6221D422B1444700041C2E6 /* Buttermilk.mov in Resources */,
 				F6FC13012B09DC9D00CFC19F /* Jennings.mov in Resources */,
 				F6FC12F92B09D96200CFC19F /* StewartPark.mov in Resources */,
 				F6FC12FD2B09DB0500CFC19F /* SunsetPark.mov in Resources */,
@@ -256,16 +253,11 @@
 				F6CC1D032B080C4F00B135D5 /* ViewController.swift in Sources */,
 				F6CC1D182B080E1000B135D5 /* Data.swift in Sources */,
 				F6FC13052B0E3CD900CFC19F /* Create_account.swift in Sources */,
-				F6FC13032B09DD2C00CFC19F /* JPP_ViewController.swift in Sources */,
-				F6FC12FF2B09DB4200CFC19F /* SUN_ViewController.swift in Sources */,
 				F6CC1CFF2B080C4F00B135D5 /* AppDelegate.swift in Sources */,
 				F6FC13092B0E4D6F00CFC19F /* Detail_ViewController.swift in Sources */,
-				F6FC12FB2B09D97200CFC19F /* SP_ViewController.swift in Sources */,
 				F6CC1D1B2B080E3B00B135D5 /* UIColor+Extension.swift in Sources */,
-				F6CC1D152B080DED00B135D5 /* LF_ViewController.swift in Sources */,
 				F6CC1D1F2B080F1000B135D5 /* FilterCollectionViewCell.swift in Sources */,
-				F6FC12F32B09D38E00CFC19F /* IF_ViewController.swift in Sources */,
-				F6FC12EF2B097BB400CFC19F /* Filter.swift in Sources */,
+				F6221D3E2B13ECE50041C2E6 /* PictureCollectionViewCell.swift in Sources */,
 				F6CC1D012B080C4F00B135D5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
