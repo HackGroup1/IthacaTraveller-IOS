@@ -26,7 +26,7 @@ extension UIColor {
         let deepCream = UIColor(red: 237/255, green: 202/255, blue: 160/255, alpha: 1)
         let deepCreamTran = UIColor(red: 237/255, green: 202/255, blue: 160/255, alpha: 0.8)
         
-        let blackTran = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.8)
+        let blackTran = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.5)
         
     }
 

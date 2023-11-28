@@ -438,7 +438,7 @@ class ViewController: UIViewController {
         let selectedFilter = self.selectedFilter
         // 遍历所有的按钮
         for button in [LFbutton, IFbutton, SPbutton, SUNbutton, JPPbutton, LTTbutton, BFbutton, WFbutton, PFbutton, KWLbutton] {
-            let buttonId = button.tag // 用tag比较location id
+            let buttonId = button.tag // 用tag比较location id，有就显示，没有就hide
 
             if selectedFilter == "All" {
                 button.isHidden = false

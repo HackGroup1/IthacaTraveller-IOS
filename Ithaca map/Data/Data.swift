@@ -60,10 +60,10 @@ struct FeatureDetail: Codable {
 }
 
 // 用于获取天气
-struct weather: Codable {
-    let weather: Int
-    let temperature: Int
-    let sunrise: String
-    let sunset: String
+struct WeatherResponse: Decodable {
+    var sunrise: String
+    var sunset: String
+    var weather: String
+    var temperature: String
 }
 
