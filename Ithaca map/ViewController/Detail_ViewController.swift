@@ -28,9 +28,12 @@ class Detail_ViewController: UIViewController {
     var unit: UILabel!
     
     // 其他属性
-    private var rectangleView: UIView!
+    var rectangleView: UIView!
     var nameLabel: UILabel!
     var descriptionLabel: UILabel!
+    var locationImageView: UIImageView!
+    var addressLabel: UILabel!
+    var verticalLine: UIView!
 
     private var player: AVPlayer?
     private var playerLayer: AVPlayerLayer?
@@ -43,9 +46,9 @@ class Detail_ViewController: UIViewController {
         print("longitude: \(longitude ?? "None")")
         print("latitude: \(latitude ?? "None")")
         
+        addRectangleToView()  // 天气的背景
         setupNameAndDescriptionLabels()  // 调用name和description
         setupVideoPlayer()  // 用于播放开头的zoom视频
-        addRectangleToView()  // 天气的背景
         setupWeatherInfoView()  // 设置天气信息展示的 UI
         fetchWeatherData()  // 调用 API 获取天气数据
         
@@ -95,6 +98,9 @@ class Detail_ViewController: UIViewController {
         view.addSubview(nameLabel)
         view.addSubview(descriptionLabel)
         view.addSubview(unit)
+        view.addSubview(locationImageView)
+        view.addSubview(addressLabel)
+        view.addSubview(verticalLine)
         
         // 渐显动画
         UIView.animate(withDuration: 1.0) {
@@ -106,6 +112,9 @@ class Detail_ViewController: UIViewController {
             self.nameLabel.alpha = 1
             self.descriptionLabel.alpha = 1
             self.unit.alpha = 1
+            self.locationImageView.alpha = 1
+            self.addressLabel.alpha = 1
+            self.verticalLine.alpha = 1
         }
     }
     
@@ -180,33 +189,57 @@ class Detail_ViewController: UIViewController {
 
         temperatureLabel = UILabel()
         temperatureLabel.textColor = UIColor.own.offWhite
-        temperatureLabel.font = UIFont.systemFont(ofSize: 26)
+        temperatureLabel.font = UIFont.systemFont(ofSize: 26, weight: .semibold)
         temperatureLabel.alpha = 0
         view.addSubview(temperatureLabel)
 
         sunriseLabel = UILabel()
         sunriseLabel.textColor = UIColor.own.offWhite
-        sunriseLabel.font = UIFont.systemFont(ofSize: 12)
+        sunriseLabel.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         sunriseLabel.alpha = 0
         view.addSubview(sunriseLabel)
 
         sunsetLabel = UILabel()
         sunsetLabel.textColor = UIColor.own.offWhite
-        sunsetLabel.font = UIFont.systemFont(ofSize: 12)
+        sunsetLabel.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         sunsetLabel.alpha = 0
         view.addSubview(sunsetLabel)
         
         unit = UILabel()
         unit.textColor = UIColor.own.offWhite
-        unit.font = UIFont.systemFont(ofSize: 16)
+        unit.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         unit.alpha = 0
         view.addSubview(unit)
+        
+        locationImageView = UIImageView()
+        locationImageView.image = UIImage(named: "location")?.withRenderingMode(.alwaysTemplate)
+        locationImageView.tintColor = UIColor.own.offWhite
+        locationImageView.contentMode = .scaleAspectFit
+        locationImageView.alpha = 0
+        view.addSubview(locationImageView)
+
+        addressLabel = UILabel()
+        addressLabel.textColor = UIColor.own.offWhite
+        addressLabel.text = address
+        addressLabel.font = UIFont.systemFont(ofSize: 14)
+        addressLabel.textAlignment = .left
+        addressLabel.numberOfLines = 0
+        addressLabel.alpha = 0
+        view.addSubview(addressLabel)
+        
+        verticalLine = UIView()
+        verticalLine.backgroundColor = UIColor.own.offWhite
+        verticalLine.alpha = 0
+        view.addSubview(verticalLine)
  
         weatherIconImageView.translatesAutoresizingMaskIntoConstraints = false
         temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
         sunriseLabel.translatesAutoresizingMaskIntoConstraints = false
         sunsetLabel.translatesAutoresizingMaskIntoConstraints = false
         unit.translatesAutoresizingMaskIntoConstraints = false
+        locationImageView.translatesAutoresizingMaskIntoConstraints = false
+        addressLabel.translatesAutoresizingMaskIntoConstraints = false
+        verticalLine.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             weatherIconImageView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
@@ -217,14 +250,28 @@ class Detail_ViewController: UIViewController {
             temperatureLabel.centerYAnchor.constraint(equalTo: weatherIconImageView.centerYAnchor,constant: 3),
             temperatureLabel.leadingAnchor.constraint(equalTo: weatherIconImageView.trailingAnchor, constant: 10),
 
-            sunriseLabel.topAnchor.constraint(equalTo: weatherIconImageView.topAnchor, constant: 8),
-            sunriseLabel.leadingAnchor.constraint(equalTo: temperatureLabel.trailingAnchor, constant: 30),
+            sunriseLabel.topAnchor.constraint(equalTo: weatherIconImageView.topAnchor, constant: 7),
+            sunriseLabel.leadingAnchor.constraint(equalTo: verticalLine.trailingAnchor, constant: 10),
 
-            sunsetLabel.bottomAnchor.constraint(equalTo: weatherIconImageView.bottomAnchor, constant: -2),
-            sunsetLabel.leadingAnchor.constraint(equalTo: temperatureLabel.trailingAnchor, constant: 30),
+            sunsetLabel.bottomAnchor.constraint(equalTo: weatherIconImageView.bottomAnchor, constant: -4),
+            sunsetLabel.leadingAnchor.constraint(equalTo: verticalLine.trailingAnchor, constant: 10),
             
-            unit.bottomAnchor.constraint(equalTo: weatherIconImageView.centerYAnchor,constant: -2),
-            unit.leadingAnchor.constraint(equalTo: weatherIconImageView.trailingAnchor, constant: 64)
+            unit.bottomAnchor.constraint(equalTo: weatherIconImageView.centerYAnchor,constant: -1),
+            unit.leadingAnchor.constraint(equalTo: weatherIconImageView.trailingAnchor, constant: 63),
+            
+            locationImageView.topAnchor.constraint(equalTo: weatherIconImageView.bottomAnchor, constant: 20),
+            locationImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
+            locationImageView.widthAnchor.constraint(equalToConstant: 32),
+            locationImageView.heightAnchor.constraint(equalToConstant: 32),
+
+            addressLabel.centerYAnchor.constraint(equalTo: locationImageView.centerYAnchor, constant: 0),
+            addressLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 70),
+            addressLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            verticalLine.centerYAnchor.constraint(equalTo: weatherIconImageView.centerYAnchor, constant: 0),
+            verticalLine.leadingAnchor.constraint(equalTo: temperatureLabel.trailingAnchor, constant: 20),
+            verticalLine.widthAnchor.constraint(equalToConstant: 1),
+            verticalLine.heightAnchor.constraint(equalToConstant: 36)
         ])
     }
     
@@ -233,17 +280,17 @@ class Detail_ViewController: UIViewController {
     private func setupNameAndDescriptionLabels() {
         nameLabel = UILabel()
         nameLabel.textColor = UIColor.own.offWhite
-        nameLabel.font = UIFont.boldSystemFont(ofSize: 30)
-        nameLabel.textAlignment = .left // 文本对齐
+        nameLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        nameLabel.textAlignment = .left
         nameLabel.text = name
         nameLabel.alpha = 0
         view.addSubview(nameLabel)
 
         descriptionLabel = UILabel()
         descriptionLabel.textColor = UIColor.own.silver
-        descriptionLabel.font = UIFont.systemFont(ofSize: 16)
+        descriptionLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium).rounded
         descriptionLabel.textAlignment = .left
-        descriptionLabel.numberOfLines = 0 // 多行显示
+        descriptionLabel.numberOfLines = 0
         descriptionLabel.text = descriptionText
         
         let paragraphStyle = NSMutableParagraphStyle()  // 段落样式

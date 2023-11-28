@@ -13,8 +13,8 @@ class Create_account: UIViewController {
 
     private let usernameTextField = UITextField()
     private let passwordTextField = UITextField()
-    private let state = UIButton()
-    private let actionButton = UIButton()
+    private let state = UIButton()  // 当前状态，标题，但并没有按钮的功能
+    private let actionButton = UIButton()  //登录按钮
     private let toggleModeButton = UIButton() // 切换signin/signup
     private var statusLabel = UILabel() // 告诉用户目前的状态
 
@@ -92,7 +92,6 @@ class Create_account: UIViewController {
         view.addSubview(statusLabel)
 
         NSLayoutConstraint.activate([
-            // ... 其他约束
             statusLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             statusLabel.topAnchor.constraint(equalTo: toggleModeButton.bottomAnchor, constant: 20),
             statusLabel.widthAnchor.constraint(equalTo: usernameTextField.widthAnchor),
@@ -156,6 +155,14 @@ class Create_account: UIViewController {
                         self.navigationController?.pushViewController(ViewController, animated: true) // 跳转
                         print("登录成功，跳转页面")
                         print("当前用户的id：\(result.user_id)")
+                        print("当前用户名：\(username)")
+                        
+                        
+                        // 需要把使用软件的用户的user_id存起来，未来会在post功能中调用
+                        let userDefaults = UserDefaults.standard
+                        userDefaults.set(result.user_id, forKey: "currentUserId")
+                        // 需要把使用软件的用户的username存起来，未来会在post功能中调用
+                        UserDefaults.standard.set(username, forKey: "currentUsername")
                     }
                     else {
                         print("用户名与密码不匹配，不允许登录")

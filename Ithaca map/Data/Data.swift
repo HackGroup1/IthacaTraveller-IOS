@@ -5,9 +5,6 @@
 //  Created by Qiandao Liu on 11/17/23.
 //
 
-//struct Id: Codable {
-//    let id: [Int]
-//}
 
 // 一个location的最详细的信息
 struct Map: Codable {
@@ -17,7 +14,7 @@ struct Map: Codable {
     let name: String
     let address: String
     let description: String
-    let posts: [String]
+    let posts: [Post]
     let features: [Feature]
 }
 
@@ -41,12 +38,6 @@ struct ResponseDataSignup: Codable {
     var post_liked: [String]
 }
 
-//struct Account: Codable {
-//    let id: String
-//    let username: String
-//    let password: String
-//}
-
 // 不同feature，用于filter
 struct FeatureLocations: Codable {
     let features: [FeatureDetail]
@@ -67,3 +58,27 @@ struct WeatherResponse: Decodable {
     var temperature: String
 }
 
+// MARK: - 关于用户
+
+// 当前正在使用软件的用户的所有信息
+struct User: Codable {
+    let id: Int
+    let username: String
+    let posts: [Post]
+    let post_liked: [Post]
+}
+
+struct Post: Codable {
+    let id: Int
+    let timestamp: String?
+    let comment: String
+    let location_id: Int
+    let user_id: Int
+    let liked_users: [Liked]?
+    let is_editable: Bool?
+}
+
+struct Liked: Codable {
+    let id: Int
+    let username: String
+}

@@ -501,11 +501,14 @@ extension ViewController: UICollectionViewDataSource {
         AF.request(urlString).responseDecodable(of: Map.self) { response in
             switch response.result {
             case .success(let locationDetails):
+                UserDefaults.standard.set(locationId, forKey: "currentLocationId")  // 存储，将在Post_ViewController中调用
                 completion(locationDetails)
             case .failure(let error):
                 print("Error fetching location details: \(error)")
                 completion(nil)
             }
         }
+        print("此时的location_id是：\(locationId)")
     }
+
 }
