@@ -45,28 +45,36 @@ class PostCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - configure
-    
-    func configure(post: Post) {
-
+    func configure(with post: Content) {
+        nameLabel.text = post.username
         messageLabel.text = post.comment
-        logoImage.image = UIImage(named: "ic-appdev")
+        likeNumberLabel.text = "\(post.liked_users.count) likes"
+        logoImage.image = UIImage(named: "head")
+        dateLabel.text = formatTimestamp(post.timestamp)
         
-//        let likes = UserDefaults.standard.array(forKey: "like") as? [Int] ?? []
-//        if likes.contains(post.id) {
-//            likeButton.setTitle("♥︎", for: .normal)
-//            likeButton.setTitleColor(UIColor.own.ruby, for: .normal)
-//        } else {
-//            likeButton.setTitle("♡", for: .normal)
-//            likeButton.setTitleColor(UIColor.own.silver, for: .normal)
-//        }
+        // 设置 likeButton 的状态
+        if let isLiked = UserDefaults.standard.array(forKey: "like") as? [Int], isLiked.contains(post.id) {
+            likeButton.setTitle("♥︎", for: .normal)
+            likeButton.setTitleColor(UIColor.own.ruby, for: .normal)
+        } else {
+            likeButton.setTitle("♡", for: .normal)
+            likeButton.setTitleColor(UIColor.own.silver, for: .normal)
+        }
+        
+        // 设置简洁的日期
+        func formatTimestamp(_ timestamp: String) -> String {
+            let components = timestamp.split(separator: " ")
+            if let dateComponent = components.first {
+                return dateComponent.replacingOccurrences(of: "-", with: ".")
+            }
+            return "Unknown Date"
+        }
     }
-
-    
     
     // MARK: - Set Up Views
     
     func setupViews() {
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = UIColor.own.white
         contentView.layer.cornerRadius = 16
         
         layer.shadowColor = UIColor.black.cgColor
@@ -134,7 +142,7 @@ class PostCollectionViewCell: UICollectionViewCell {
         likeButton.titleLabel?.font = UIFont
             .systemFont(ofSize: 20, weight: .regular)
         likeButton.backgroundColor = UIColor.own.white
-        likeButton.setTitle("♡", for: .normal)
+        
         likeButton.setTitleColor(UIColor.own.silver, for: .normal)
         
         contentView.addSubview(likeButton)

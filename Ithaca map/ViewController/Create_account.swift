@@ -186,23 +186,13 @@ class Create_account: UIViewController {
         print("给后端的数据：\(parameters)")
         AF.request("http://34.86.14.173/api/users/", method: .post, parameters: parameters, encoding: JSONEncoding.default).response { response in
             switch response.result {
-            case .success(let data):
-                guard let data = data else {
-                    print("not received data")
-                    return
-                }
-                do {
-                    // 获得从后端返回的信息
-                    let result = try JSONDecoder().decode(ResponseDataSignup.self, from: data)
-                    // 如果没有该用户，那么注册成功
-                    if result.username == username {
-                        print("目前没有这个用户名，允许注册")
-                        print("成功注册，user id：\(result.id)")
-                        self.updateStatusLabel(withMessage: "Successfully create an account!")
-                    }
-                } catch {
-                    print("prase error: \(error.localizedDescription)")
-                    print("注册失败b1")
+            case .success:
+                // 如果没有该用户，那么注册成功
+                if let statusCode = response.response?.statusCode, 201 == statusCode {
+                    print("目前没有这个用户名，允许注册")
+                    self.updateStatusLabel(withMessage: "Successfully create an account!")
+                } else if let statusCode = response.response?.statusCode, 400 == statusCode{
+                    print("该用户名已存在")
                     self.updateStatusLabel(withMessage: "Account already exist")
                 }
             case .failure(let error):

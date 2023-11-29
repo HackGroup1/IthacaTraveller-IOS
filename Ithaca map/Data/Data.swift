@@ -14,7 +14,6 @@ struct Map: Codable {
     let name: String
     let address: String
     let description: String
-    let posts: [Post]
     let features: [Feature]
 }
 
@@ -30,13 +29,13 @@ struct ResponseDataSignin: Codable {
     var user_id: Int
 }
 
-// 用于存储一个注册的新用户
-struct ResponseDataSignup: Codable {
-    var id: Int
-    var username: String
-    var posts: [String]
-    var post_liked: [String]
-}
+//// 用于存储一个注册的新用户
+//struct ResponseDataSignup: Codable {
+//    var id: Int
+//    var username: String
+//    var posts: [String]
+//    var post_liked: [String]
+//}
 
 // 不同feature，用于filter
 struct FeatureLocations: Codable {
@@ -59,26 +58,22 @@ struct WeatherResponse: Decodable {
 }
 
 // MARK: - 关于用户
-
-// 当前正在使用软件的用户的所有信息
-struct User: Codable {
-    let id: Int
-    let username: String
-    let posts: [Post]
-    let post_liked: [Post]
+struct Posts: Decodable {
+    var posts: [Content]
 }
 
-struct Post: Codable {
-    let id: Int
-    let timestamp: String?
-    let comment: String
-    let location_id: Int
-    let user_id: Int
-    let liked_users: [Liked]?
-    let is_editable: Bool?
+struct Content: Decodable {
+    var id: Int
+    var timestamp: String
+    var comment: String
+    var location_id: Int
+    var user_id: Int
+    var username: String
+    var liked_users: [Liked]
+    var is_editable: Bool
 }
-
-struct Liked: Codable {
-    let id: Int
-    let username: String
+    
+struct Liked: Decodable {
+    var id: Int
+    var username: String
 }

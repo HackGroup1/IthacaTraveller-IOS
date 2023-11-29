@@ -42,11 +42,11 @@ class CreatePostCollectionViewCell: UICollectionViewCell {
     // MARK: - Set Up Views
     
     func setupViews() {
-        // 设置背景颜色
-        contentView.backgroundColor = .white
-        contentView.layer.cornerRadius = 16 // 设置圆角
+        // 背景颜色
+        contentView.backgroundColor = UIColor.own.white
+        contentView.layer.cornerRadius = 16 // 圆角
         
-        // 设置阴影
+        // 阴影
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 2)
         layer.shadowOpacity = 0.1
@@ -55,7 +55,7 @@ class CreatePostCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupTextField() {
-        textField.placeholder = "✏️ What's on your mind?"
+        textField.placeholder = "✏️ travel notes"
         textField.font = .systemFont(ofSize: 16)
         
         contentView.addSubview(textField)
@@ -74,7 +74,7 @@ class CreatePostCollectionViewCell: UICollectionViewCell {
         postButton.setTitle("Post", for: .normal)
         postButton.setTitleColor(UIColor.own.white, for: .normal)
         postButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .semibold)
-        
+        postButton.addTarget(self, action: #selector(postButtonTapped), for: .touchUpInside)
         contentView.addSubview(postButton)
         postButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -86,8 +86,10 @@ class CreatePostCollectionViewCell: UICollectionViewCell {
             postButton.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 32)
         ])
     }
-    
-    // MARK: - 创建一个post
-    
+    @objc func postButtonTapped() {
+        let comment = textField.text ?? ""
+        delegate?.didTapPostButton(with: comment)
+    }
     
 }
+

@@ -11,18 +11,10 @@ import SDWebImage
 import Alamofire
 
 class Post_ViewController: UIViewController {
-    // MARK: - Properties (view)
-    
-    private var collectionView: UICollectionView!  // not optional
-    private let textLabel = UILabel()
-    private let refreshControl = UIRefreshControl()
-    private var messageLabel: String = "New Message"
-    
-    
-    // MARK: - Properties (data)
 
-    private var data: [Post] = []
-    
+    var collectionView: UICollectionView!
+    var posts: [Content] = []  // 存储评论数据
+
     
     // MARK: - viewDidLoad
     
@@ -30,12 +22,18 @@ class Post_ViewController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.navigationBar.prefersLargeTitles = true
-        view.backgroundColor = UIColor.own.offWhite
+        view.backgroundColor = UIColor.own.tran
+        print("进入post界面")
         
-        setupCollectionView()
-        loadPosts()
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(CreatePostCollectionViewCell.self, forCellWithReuseIdentifier: CreatePostCollectionViewCell.reuse)
         
-        // MARK: - 获取location_id, user_id, username
+        
+        // MARK: - 获取 location_id, user_id, username
         
         // 获取 location_id
         let locationId = UserDefaults.standard.integer(forKey: "currentLocationId")
@@ -56,39 +54,23 @@ class Post_ViewController: UIViewController {
         // 获取 username
         let currentUsername = UserDefaults.standard.string(forKey: "currentUsername") ?? "Guest"
         print("当前登录用户的用户名是：\(currentUsername)")
-    }
-    
-    // MARK: - 已经获得了需要的元素，组合一个URL
-    // 发起请求获得具体帖子的信息
-    
-    func loadPosts() {
-        let userId = UserDefaults.standard.integer(forKey: "currentUserId")
-        let locationId = UserDefaults.standard.integer(forKey: "currentLocationId")
-        let urlString = "http://34.86.14.173/api/posts/locations/\(locationId)/?sort=recent&user_id=\(userId)"
-
-        AF.request(urlString).responseDecodable(of: [Post].self) { response in
-            switch response.result {
-            case .success(let posts):
-                self.data = posts
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-            case .failure(let error):
-                print("Error fetching posts: \(error)")
-            }
-        }
+        
+        loadPosts()
+        setupCollectionView()
     }
     
     // MARK: - Set Up Views
     
     private func setupCollectionView() {
+        print("现在开始setup collection view")
         let flowlayout = UICollectionViewFlowLayout()
         flowlayout.scrollDirection = .vertical  // scroll vertical direction
         flowlayout.minimumLineSpacing = 24  // spacing between rows
         
         collectionView = UICollectionView(frame:
                 .zero, collectionViewLayout: flowlayout)
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor.own.tran
+        collectionView.showsVerticalScrollIndicator = false
               
         // Registering cells
         collectionView.register(CreatePostCollectionViewCell
@@ -99,10 +81,9 @@ class Post_ViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        print("现在开始addSubview")
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        collectionView.refreshControl = refreshControl
         
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(
@@ -116,43 +97,30 @@ class Post_ViewController: UIViewController {
         ])
     }
     
-}
-
-// MARK: - UICollectionView Delegate
-
-extension Post_ViewController: UICollectionViewDelegate {
+    // MARK: - 加载所有的posts
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // 1. get object that is being selected
-        let data = data[indexPath.row]
-        
-        // 2. fetch the favorited brid names from UserDeafaults
-        var favorites = UserDefaults.standard.array(forKey: "like") as? [Int] ?? []
-            // use as？to cast
-        
-        // 3. toggle the favorite
-        if favorites.contains(data.id) {
-            // name is already stored -> remove it
-            favorites.removeAll { name in
-                return name == data.id
+    func loadPosts() {
+        let userId = UserDefaults.standard.integer(forKey: "currentUserId")
+        let locationId = UserDefaults.standard.integer(forKey: "currentLocationId")
+
+        let urlString = "http://34.86.14.173/api/posts/locations/\(locationId)/?sort=recent&user_id=\(userId)"
+        AF.request(urlString).responseDecodable(of: Posts.self) { response in
+            switch response.result {
+            case .success(let postsData):
+                self.posts = postsData.posts
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            case .failure(let error):
+                print("Error: \(error.localizedDescription)")
             }
-        } else {
-            // name not stored -> add it
-            favorites.append(data.id)
         }
-        
-        // 4. 此时我们要把favorites存储进用户的本地, update userDefault
-        UserDefaults.standard.setValue(favorites, forKey: "like")
-        
-        // 5. update collectionView
-        collectionView.reloadData()
     }
-    
 }
-// MARK: - UICollectionView DataSource
 
+
+// MARK: - UICollectionView DataSource 和 Delegate 方法
 extension Post_ViewController: UICollectionViewDataSource {
-    // tell UICollectionView what content should be shown
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         // define how many sections (define how many dections in total)
@@ -162,36 +130,85 @@ extension Post_ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView
                         , numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
-                // section 0: create post 用于创建post的section的item的数量
-                return 1
-            } else {
-                // same number items in section as number of dummy posts
-                return data.count
-            }
+            return 1
+        } else {
+            // same number items in section as number of dummy posts
+            // 修改这里：这里的数量应该是这个location的评论区的posts的数量，数量==评论数量
+            return posts.count
+        }
     }
-    
-    
-    func collectionView(_ collectionView: UICollectionView
-                        , cellForItemAt indexPath
-                        : IndexPath) -> UICollectionViewCell {
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
-            // build items for create post
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CreatePostCollectionViewCell
-                .reuse, for: indexPath) as! CreatePostCollectionViewCell
+            // Section 0: 创建 CreatePostCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CreatePostCollectionViewCell.reuse, for: indexPath) as! CreatePostCollectionViewCell
+            cell.delegate = self
             return cell
         } else {
-            // build items for show posts
+            // Section 1: 创建 PostCollectionViewCell
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostCollectionViewCell.reuse, for: indexPath) as! PostCollectionViewCell
-            let post = data[indexPath.row]
-            cell.configure(post: post)
+            let post = posts[indexPath.row]
+            // 配置 PostCollectionViewCell
+            cell.configure(with: post)
             return cell
         }
     }
 }
+
+// MARK: - 实现 CreatePostDelegate
+extension Post_ViewController: CreatePostDelegate {
+    func didTapPostButton(with text: String) {
+        print("确认按下post button")
+        let userId = UserDefaults.standard.integer(forKey: "currentUserId")
+        let locationId = UserDefaults.standard.integer(forKey: "currentLocationId")
+        if userId != 0 && locationId != 0 {
+            postCommentToServer(comment: text, userId: userId, locationId: locationId)
+        } else {
+            print("Invalid user ID or location ID")
+        }
+        
+    }
+    
+    func postCommentToServer(comment: String, userId: Int, locationId: Int) {
+        print("准备post to backend的信息")
+        
+        let parameters: [String: Any] = [
+            "comment": comment,
+            "user_id": userId,
+            "location_id": locationId
+        ]
+
+        AF.request("http://34.86.14.173/api/posts/", method: .post, parameters: parameters, encoding: JSONEncoding.default).response { response in
+            switch response.result {
+            case .success:
+                print("网络连接成功")
+                if let statusCode = response.response?.statusCode, 200...299 ~= statusCode {
+                    print("成功发送message到后端")
+                    self.showAlert(title: "Success", message: "Message successfully sent.")
+                } else {
+                    print("Post失败b1")
+                    let statusCode = response.response?.statusCode ?? 0
+                    self.showAlert(title: "Failed", message: "Failed to send message. Status Code: \(statusCode)")
+                }
+            case .failure(let error):
+                print("Post失败b2")
+                self.showAlert(title: "Error", message: "Error: \(error.localizedDescription)")
+            }
+        }
+    }
+
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+    }
+
     
     
-// MARK: - UICollectionViewDelegateFlowLayout
-    
+}
+
 extension Post_ViewController: UICollectionViewDelegateFlowLayout {
     // 这个协议的方法定义布局相关的属性：单元格的大小、section间距、行间距以及边距
     
@@ -207,10 +224,10 @@ extension Post_ViewController: UICollectionViewDelegateFlowLayout {
             // postCell items height
             height = 184
         }
-                
+        
         return CGSize(width: width, height: height)
     }
-        
+    
     func collectionView(_ collectionView: UICollectionView
                         , layout collectionViewLayout: UICollectionViewLayout
                         , insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -219,11 +236,12 @@ extension Post_ViewController: UICollectionViewDelegateFlowLayout {
         }
         return UIEdgeInsets(top: 16, left: 24, bottom: 24, right: 24)
     }
-        
+    
     func collectionView(_ collectionView: UICollectionView
                         , layout collectionViewLayout: UICollectionViewLayout
                         , minimumLineSpacingForSectionAt section
                         : Int) -> CGFloat {
         return 16
     }
+    
 }

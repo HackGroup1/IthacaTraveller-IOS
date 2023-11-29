@@ -85,13 +85,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F6221D512B158EBA0041C2E6 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
 		F6CC1CF22B080C4F00B135D5 = {
 			isa = PBXGroup;
 			children = (
@@ -111,7 +104,6 @@
 		F6CC1CFD2B080C4F00B135D5 /* Ithaca map */ = {
 			isa = PBXGroup;
 			children = (
-				F6221D512B158EBA0041C2E6 /* Networking */,
 				F6CC1D122B080D9A00B135D5 /* ViewController */,
 				F6CC1D132B080DB100B135D5 /* ViewCollectionCell */,
 				F6CC1D162B080DFB00B135D5 /* Data */,

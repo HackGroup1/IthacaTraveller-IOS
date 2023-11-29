@@ -34,6 +34,9 @@ class Detail_ViewController: UIViewController {
     var locationImageView: UIImageView!
     var addressLabel: UILabel!
     var verticalLine: UIView!
+    
+    var more: UILabel!
+    var arrow: UIImageView!
 
     private var player: AVPlayer?
     private var playerLayer: AVPlayerLayer?
@@ -101,6 +104,8 @@ class Detail_ViewController: UIViewController {
         view.addSubview(locationImageView)
         view.addSubview(addressLabel)
         view.addSubview(verticalLine)
+        view.addSubview(more)
+        view.addSubview(arrow)
         
         // 渐显动画
         UIView.animate(withDuration: 1.0) {
@@ -115,6 +120,9 @@ class Detail_ViewController: UIViewController {
             self.locationImageView.alpha = 1
             self.addressLabel.alpha = 1
             self.verticalLine.alpha = 1
+            self.more.alpha = 1
+            self.arrow.alpha = 1
+            
         }
     }
     
@@ -231,7 +239,20 @@ class Detail_ViewController: UIViewController {
         verticalLine.backgroundColor = UIColor.own.offWhite
         verticalLine.alpha = 0
         view.addSubview(verticalLine)
- 
+        
+        arrow = UIImageView()
+        arrow.image = UIImage(named: "arrow")?.withRenderingMode(.alwaysTemplate)
+        arrow.tintColor = UIColor.own.silver
+        arrow.contentMode = .scaleAspectFit
+        arrow.alpha = 0
+        view.addSubview(arrow)
+        
+        more = UILabel()
+        more.textColor = UIColor.own.silver
+        more.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        more.alpha = 0
+        view.addSubview(more)
+        
         weatherIconImageView.translatesAutoresizingMaskIntoConstraints = false
         temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
         sunriseLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -240,6 +261,8 @@ class Detail_ViewController: UIViewController {
         locationImageView.translatesAutoresizingMaskIntoConstraints = false
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
         verticalLine.translatesAutoresizingMaskIntoConstraints = false
+        arrow.translatesAutoresizingMaskIntoConstraints = false
+        more.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             weatherIconImageView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
@@ -271,7 +294,15 @@ class Detail_ViewController: UIViewController {
             verticalLine.centerYAnchor.constraint(equalTo: weatherIconImageView.centerYAnchor, constant: 0),
             verticalLine.leadingAnchor.constraint(equalTo: temperatureLabel.trailingAnchor, constant: 20),
             verticalLine.widthAnchor.constraint(equalToConstant: 1),
-            verticalLine.heightAnchor.constraint(equalToConstant: 36)
+            verticalLine.heightAnchor.constraint(equalToConstant: 36),
+            
+            arrow.bottomAnchor.constraint(equalTo: more.topAnchor, constant: 10),
+            arrow.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            arrow.widthAnchor.constraint(equalToConstant: 40),
+            arrow.heightAnchor.constraint(equalToConstant: 32),
+            
+            more.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            more.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
     
