@@ -185,7 +185,7 @@ class Detail_ViewController: UIViewController {
 
         self.present(newViewController, animated: true, completion: nil)
     }
-
+    
     
     // MARK: - 设置天气的UI
     

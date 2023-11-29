@@ -26,10 +26,14 @@ extension UIColor {
         let deepOrangeTran = UIColor(red: 170/255, green: 68/255, blue: 20/255, alpha: 0.8)
         let deepCream = UIColor(red: 237/255, green: 202/255, blue: 160/255, alpha: 1)
         let deepCreamTran = UIColor(red: 237/255, green: 202/255, blue: 160/255, alpha: 0.8)
+        let deepGreen = UIColor(red: 65/255, green: 85/255, blue: 58/255, alpha: 1)
+        let deepGreenTran = UIColor(red: 65/255, green: 85/255, blue: 58/255, alpha: 0.8)
+        let deepRed = UIColor(red: 161/255, green: 52/255, blue: 37/255, alpha: 1)
         
         let blackTran = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.5)
         let blackTraner = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.3)
         let tran = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0)
+        
         
     }
 

@@ -9,8 +9,15 @@ import Foundation
 import UIKit
 import Alamofire
 
+// MARK: - 代理协议：告诉Post_ViewController用户点赞的操作
+
+protocol PostCollectionViewCellDelegate: AnyObject {
+    func didTapLikeButton(onPostWithID postID: Int)
+}
+
+// MARK: - main class
+
 class PostCollectionViewCell: UICollectionViewCell {
-    
     // MARK: - Properties (view)
     
     private let nameLabel = UILabel()
@@ -26,6 +33,11 @@ class PostCollectionViewCell: UICollectionViewCell {
     
     private var date: String = "Date Placeholder"
     private var likes: String = "0 likes"
+    
+    // MARK: - 在 PostCollectionViewCell 中添加一个属性来存储当前显示的帖子信息
+    
+    var post: Content?  // 当前显示的帖子信息
+    weak var delegate: PostCollectionViewCellDelegate?  // 代理, 传递点赞信息到Post_ViewController
 
     // MARK: - init
     
@@ -52,16 +64,11 @@ class PostCollectionViewCell: UICollectionViewCell {
         logoImage.image = UIImage(named: "head")
         dateLabel.text = formatTimestamp(post.timestamp)
         
-        // 设置 likeButton 的状态
-        if let isLiked = UserDefaults.standard.array(forKey: "like") as? [Int], isLiked.contains(post.id) {
-            likeButton.setTitle("♥︎", for: .normal)
-            likeButton.setTitleColor(UIColor.own.ruby, for: .normal)
-        } else {
-            likeButton.setTitle("♡", for: .normal)
-            likeButton.setTitleColor(UIColor.own.silver, for: .normal)
-        }
+        updateLikeButtonIcon(isLiked: isPostLikedByCurrentUser(post))  // 设置点赞按钮的图标
+
+        self.post = post // 保存当前帖子信息
         
-        // 设置简洁的日期
+        // 设置简洁的日期，截取string中的日期characters
         func formatTimestamp(_ timestamp: String) -> String {
             let components = timestamp.split(separator: " ")
             if let dateComponent = components.first {
@@ -71,10 +78,22 @@ class PostCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    // MARK: - 检查当前用户是否已点赞此帖子
+    private func isPostLikedByCurrentUser(_ post: Content) -> Bool {
+        let currentUserId = UserDefaults.standard.integer(forKey: "currentUserId")
+        return post.liked_users.contains(where: { $0.id == currentUserId })
+    }
+    
+    // 更新点赞按钮的图标
+    private func updateLikeButtonIcon(isLiked: Bool) {
+        let iconName = isLiked ? "liked" : "like"
+        likeButton.setImage(UIImage(named: iconName), for: .normal)
+    }
+    
     // MARK: - Set Up Views
     
     func setupViews() {
-        contentView.backgroundColor = UIColor.own.white
+        contentView.backgroundColor = UIColor.own.offWhite
         contentView.layer.cornerRadius = 16
         
         layer.shadowColor = UIColor.black.cgColor
@@ -139,12 +158,6 @@ class PostCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupLikeButton() {
-        likeButton.titleLabel?.font = UIFont
-            .systemFont(ofSize: 20, weight: .regular)
-        likeButton.backgroundColor = UIColor.own.white
-        
-        likeButton.setTitleColor(UIColor.own.silver, for: .normal)
-        
         contentView.addSubview(likeButton)
         likeButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -156,6 +169,8 @@ class PostCollectionViewCell: UICollectionViewCell {
             likeButton.widthAnchor.constraint(equalToConstant: 24),
             likeButton.heightAnchor.constraint(equalToConstant: 24)
         ])
+        
+        likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
     }
     
     private func setupDateLabel() {
@@ -190,7 +205,20 @@ class PostCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    // MARK: - GET user information by user_id
+    // MARK: - 当likeButton被点击
+    
+    @objc func likeButtonTapped() {
+        guard let postID = post?.id else { return }
+        print("点赞的帖子是：\(postID)")
+        
+        // 切换点赞状态并更新图标
+        let isLiked = isPostLikedByCurrentUser(post!)
+        updateLikeButtonIcon(isLiked: !isLiked)
+        
+        // 通过代理将点赞的帖子ID传递出去
+        delegate?.didTapLikeButton(onPostWithID: postID)
+    }
+
     
 }
 

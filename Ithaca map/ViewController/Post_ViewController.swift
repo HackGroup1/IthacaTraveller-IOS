@@ -116,6 +116,13 @@ class Post_ViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: - 发帖后自动刷新
+    // 重新加载帖子
+    func reloadPosts() {
+        loadPosts()  // 重新调用加载帖子的方法
+        print("帖子已经重新加载")
+    }
 }
 
 
@@ -150,6 +157,7 @@ extension Post_ViewController: UICollectionViewDataSource {
             let post = posts[indexPath.row]
             // 配置 PostCollectionViewCell
             cell.configure(with: post)
+            cell.delegate = self // 设置代理, 接收从PostCollectionViewCell来的点赞帖子id
             return cell
         }
     }
@@ -162,14 +170,20 @@ extension Post_ViewController: CreatePostDelegate {
         let userId = UserDefaults.standard.integer(forKey: "currentUserId")
         let locationId = UserDefaults.standard.integer(forKey: "currentLocationId")
         if userId != 0 && locationId != 0 {
-            postCommentToServer(comment: text, userId: userId, locationId: locationId)
+            // 发送评论到服务器
+            postCommentToServer(comment: text, userId: userId, locationId: locationId) { [weak self] success in
+                if success {
+                    // 如果发帖成功，重新加载帖子
+                    self?.reloadPosts()
+                }
+            }
         } else {
             print("Invalid user ID or location ID")
         }
         
     }
     
-    func postCommentToServer(comment: String, userId: Int, locationId: Int) {
+    func postCommentToServer(comment: String, userId: Int, locationId: Int, completion: @escaping (Bool) -> Void) {
         print("准备post to backend的信息")
         
         let parameters: [String: Any] = [
@@ -184,34 +198,25 @@ extension Post_ViewController: CreatePostDelegate {
                 print("网络连接成功")
                 if let statusCode = response.response?.statusCode, 200...299 ~= statusCode {
                     print("成功发送message到后端")
-                    self.showAlert(title: "Success", message: "Message successfully sent.")
+                    completion(true)  // 发帖成功，调用 completion 闭包
                 } else {
                     print("Post失败b1")
-                    let statusCode = response.response?.statusCode ?? 0
-                    self.showAlert(title: "Failed", message: "Failed to send message. Status Code: \(statusCode)")
+                    completion(false)  // 发帖失败b1
                 }
-            case .failure(let error):
+            case .failure(_):
                 print("Post失败b2")
-                self.showAlert(title: "Error", message: "Error: \(error.localizedDescription)")
+                completion(false)  // 发帖失败b2
+                
             }
         }
     }
-
-    func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        DispatchQueue.main.async {
-            self.present(alert, animated: true)
-        }
-    }
-
-    
     
 }
 
+// MARK: - 定义两个section在ViewController中的排列和布局
+
 extension Post_ViewController: UICollectionViewDelegateFlowLayout {
     // 这个协议的方法定义布局相关的属性：单元格的大小、section间距、行间距以及边距
-    
     func collectionView(_ collectionView: UICollectionView
                         , layout collectionViewLayout: UICollectionViewLayout
                         , sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -244,4 +249,36 @@ extension Post_ViewController: UICollectionViewDelegateFlowLayout {
         return 16
     }
     
+}
+
+// MARK: - 处理用户点赞信息，把用户点赞内容传给后端
+
+extension Post_ViewController: PostCollectionViewCellDelegate {
+    func didTapLikeButton(onPostWithID postID: Int) {
+        print("点赞的帖子是：\(postID)")
+        
+        // 获取当前登录的用户ID
+        let currentUserId = UserDefaults.standard.integer(forKey: "currentUserId")
+        if currentUserId != 0 {
+            print("点赞用户的id：\(currentUserId)")
+            sendLikeRequest(postID: postID, userID: currentUserId)
+        } else {
+            print("无效的用户ID")
+        }
+    }
+    
+    func sendLikeRequest(postID: Int, userID: Int) {
+        let url = "http://34.86.14.173/api/posts/\(postID)/like/"
+        let parameters: [String: Any] = ["user_id": userID]
+
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).response { response in
+            switch response.result {
+            case .success:
+                print("点赞请求发送后端成功")
+                self.reloadPosts()  // 重新加载帖子让点赞显示
+            case .failure(let error):
+                print("点赞请求发送后端失败: \(error.localizedDescription)")
+            }
+        }
+    }
 }

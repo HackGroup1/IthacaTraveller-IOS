@@ -43,7 +43,7 @@ class CreatePostCollectionViewCell: UICollectionViewCell {
     
     func setupViews() {
         // 背景颜色
-        contentView.backgroundColor = UIColor.own.white
+        contentView.backgroundColor = UIColor.own.offWhite
         contentView.layer.cornerRadius = 16 // 圆角
         
         // 阴影
@@ -69,7 +69,7 @@ class CreatePostCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupPostButton() {
-        postButton.backgroundColor = UIColor.own.ruby
+        postButton.backgroundColor = UIColor.own.deepRed
         postButton.layer.cornerRadius = 4
         postButton.setTitle("Post", for: .normal)
         postButton.setTitleColor(UIColor.own.white, for: .normal)
@@ -89,6 +89,7 @@ class CreatePostCollectionViewCell: UICollectionViewCell {
     @objc func postButtonTapped() {
         let comment = textField.text ?? ""
         delegate?.didTapPostButton(with: comment)
+        textField.text = ""  // 清空textField的内容
     }
     
 }
