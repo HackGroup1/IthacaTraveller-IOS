@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     
     // MARK: - Properties (data)
     
-    private let filterOptions = ["All", "Waterfall", "Park", "Lake", "Odyssey"]
+    private let filterOptions = ["All", "Waterfall", "Park", "Lake"]
     
     // MARK: - Networking
     
