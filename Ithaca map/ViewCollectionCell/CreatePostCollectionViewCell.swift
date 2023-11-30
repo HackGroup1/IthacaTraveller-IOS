@@ -11,6 +11,7 @@ import Alamofire
 
 protocol CreatePostDelegate: AnyObject {
     func didTapPostButton(with text: String)
+    func didSelectImage()
 }
 
 class CreatePostCollectionViewCell: UICollectionViewCell {
@@ -19,6 +20,7 @@ class CreatePostCollectionViewCell: UICollectionViewCell {
     
     private let postButton = UIButton()
     private let textField = UITextField()
+    private let selectImageButton = UIButton()
     
     // MARK: - Properties (data)
     
@@ -33,6 +35,7 @@ class CreatePostCollectionViewCell: UICollectionViewCell {
         setupViews()
         setupTextField()
         setupPostButton()
+        setupSelectImageButton()
     }
     
     required init?(coder: NSCoder) {
@@ -92,5 +95,28 @@ class CreatePostCollectionViewCell: UICollectionViewCell {
         textField.text = ""  // 清空textField的内容
     }
     
+    // 用于选择照片进行上传的按钮
+    private func setupSelectImageButton() {
+        selectImageButton.setTitle("", for: .normal)
+        selectImageButton.setImage(UIImage(named: "ic-image"), for: .normal)
+        selectImageButton.imageView?.contentMode = .scaleAspectFit
+        selectImageButton.backgroundColor = UIColor.own.tran
+        selectImageButton.layer.cornerRadius = 4
+        
+        selectImageButton.addTarget(self, action: #selector(selectImageButtonTapped), for: .touchUpInside)
+        contentView.addSubview(selectImageButton)
+        selectImageButton.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            selectImageButton.leadingAnchor.constraint(equalTo: postButton.leadingAnchor, constant: -44),
+            selectImageButton.centerYAnchor.constraint(equalTo: postButton.centerYAnchor),
+            selectImageButton.widthAnchor.constraint(equalToConstant: 30),
+            selectImageButton.heightAnchor.constraint(equalToConstant: 30)
+        ])
+    }
+    @objc private func selectImageButtonTapped() {
+        print("开始选择照片")
+        delegate?.didSelectImage()
+    }
 }
 

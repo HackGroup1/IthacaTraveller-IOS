@@ -14,6 +14,7 @@ class Post_ViewController: UIViewController {
 
     var collectionView: UICollectionView!
     var posts: [Content] = []  // 存储评论数据
+    var selectedImage: UIImage?  // 存储想要上传的照片
 
     
     // MARK: - viewDidLoad
@@ -117,6 +118,21 @@ class Post_ViewController: UIViewController {
         }
     }
     
+    // MARK: - 上传照片到server
+    func uploadImage(forPostId postId: Int, image: UIImage) {
+        let url = "http://34.86.14.173/api/images/posts/\(postId)/?"
+        // 将 UIImage 转换为 Data
+        guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }
+
+        AF.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(imageData, withName: "image", fileName: "image.jpg", mimeType: "image/jpeg")
+        }, to: url).response { response in
+            // 处理上传响应
+        }
+        print("上传图片的function：成功")
+    }
+
+    
     // MARK: - 发帖后自动刷新
     // 重新加载帖子
     func reloadPosts() {
@@ -171,44 +187,47 @@ extension Post_ViewController: CreatePostDelegate {
         let locationId = UserDefaults.standard.integer(forKey: "currentLocationId")
         if userId != 0 && locationId != 0 {
             // 发送评论到服务器
-            postCommentToServer(comment: text, userId: userId, locationId: locationId) { [weak self] success in
-                if success {
+            postCommentToServer(comment: text, userId: userId, locationId: locationId) { [weak self] postId in
+                if postId != nil {
                     // 如果发帖成功，重新加载帖子
                     self?.reloadPosts()
+                } else {
+                    print("创建帖子失败")
                 }
             }
         } else {
             print("Invalid user ID or location ID")
         }
-        
     }
     
-    func postCommentToServer(comment: String, userId: Int, locationId: Int, completion: @escaping (Bool) -> Void) {
+    func postCommentToServer(comment: String, userId: Int, locationId: Int, completion: @escaping (Int?) -> Void) {
         print("准备post to backend的信息")
-        
+
         let parameters: [String: Any] = [
             "comment": comment,
             "user_id": userId,
             "location_id": locationId
         ]
 
-        AF.request("http://34.86.14.173/api/posts/", method: .post, parameters: parameters, encoding: JSONEncoding.default).response { response in
+        AF.request("http://34.86.14.173/api/posts/", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseDecodable(of: PostId.self) { response in
             switch response.result {
-            case .success:
-                print("网络连接成功")
-                if let statusCode = response.response?.statusCode, 200...299 ~= statusCode {
-                    print("成功发送message到后端")
-                    completion(true)  // 发帖成功，调用 completion 闭包
-                } else {
-                    print("Post失败b1")
-                    completion(false)  // 发帖失败b1
+            case .success(let postIdResponse):
+                print("网络连接成功，帖子ID: \(postIdResponse.post_id)")
+                if let image = self.selectedImage {
+                    self.uploadImage(forPostId: postIdResponse.post_id, image: image)
+                    print("网络功能上传照片：成功")
                 }
-            case .failure(_):
-                print("Post失败b2")
-                completion(false)  // 发帖失败b2
-                
+                completion(postIdResponse.post_id)  // 返回帖子ID
+            case .failure(let error):
+                print("Post失败: \(error.localizedDescription)")
+                completion(nil)  // 发帖失败，返回nil
             }
         }
+    }
+    
+    func didSelectImage() {
+        print("传递选择照片指令到Post_ViewController")
+        presentImagePicker()
     }
     
 }
@@ -282,3 +301,23 @@ extension Post_ViewController: PostCollectionViewCellDelegate {
         }
     }
 }
+
+extension Post_ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func presentImagePicker() {
+        print("用户开始选择照片")
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        picker.sourceType = .photoLibrary
+        print("从相册中选择照片")
+        present(picker, animated: true)
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+        guard let image = info[.editedImage] as? UIImage else { return }
+        print("处理，保存选取的照片")
+        self.selectedImage = image  // 保存用户选择的图片
+    }
+}
+

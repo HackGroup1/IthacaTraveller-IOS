@@ -29,14 +29,6 @@ struct ResponseDataSignin: Codable {
     var user_id: Int
 }
 
-//// 用于存储一个注册的新用户
-//struct ResponseDataSignup: Codable {
-//    var id: Int
-//    var username: String
-//    var posts: [String]
-//    var post_liked: [String]
-//}
-
 // 不同feature，用于filter
 struct FeatureLocations: Codable {
     let features: [FeatureDetail]
@@ -76,4 +68,8 @@ struct Content: Decodable {
 struct Liked: Decodable {
     var id: Int
     var username: String
+}
+
+struct PostId: Decodable {
+    var post_id: Int
 }
