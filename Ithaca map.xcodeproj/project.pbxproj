@@ -10,13 +10,13 @@
 		F6221D3E2B13ECE50041C2E6 /* PictureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6221D3D2B13ECE50041C2E6 /* PictureCollectionViewCell.swift */; };
 		F6221D402B1442D20041C2E6 /* Treman.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D3F2B1442D20041C2E6 /* Treman.mov */; };
 		F6221D422B1444700041C2E6 /* Buttermilk.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D412B1444700041C2E6 /* Buttermilk.mov */; };
-		F6221D462B1447DC0041C2E6 /* Wells.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D452B1447DC0041C2E6 /* Wells.mov */; };
 		F6221D482B1449970041C2E6 /* Potter.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D472B1449960041C2E6 /* Potter.mov */; };
 		F6221D4A2B144ACA0041C2E6 /* Kings.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D492B144ACA0041C2E6 /* Kings.mov */; };
 		F6221D4C2B158C950041C2E6 /* Post_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6221D4B2B158C950041C2E6 /* Post_ViewController.swift */; };
 		F6221D4E2B158E340041C2E6 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6221D4D2B158E340041C2E6 /* PostCollectionViewCell.swift */; };
 		F6221D502B158E470041C2E6 /* CreatePostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6221D4F2B158E470041C2E6 /* CreatePostCollectionViewCell.swift */; };
 		F6221D572B18DED20041C2E6 /* Post_DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6221D562B18DED20041C2E6 /* Post_DetailViewController.swift */; };
+		F6221D5B2B191DA80041C2E6 /* Wells.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D5A2B191DA80041C2E6 /* Wells.mov */; };
 		F6CC1CFF2B080C4F00B135D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1CFE2B080C4F00B135D5 /* AppDelegate.swift */; };
 		F6CC1D012B080C4F00B135D5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1D002B080C4F00B135D5 /* SceneDelegate.swift */; };
 		F6CC1D032B080C4F00B135D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1D022B080C4F00B135D5 /* ViewController.swift */; };
@@ -44,13 +44,13 @@
 		F6221D3D2B13ECE50041C2E6 /* PictureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCollectionViewCell.swift; sourceTree = "<group>"; };
 		F6221D3F2B1442D20041C2E6 /* Treman.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Treman.mov; sourceTree = "<group>"; };
 		F6221D412B1444700041C2E6 /* Buttermilk.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Buttermilk.mov; sourceTree = "<group>"; };
-		F6221D452B1447DC0041C2E6 /* Wells.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = Wells.mov; path = ../../Wells.mov; sourceTree = "<group>"; };
 		F6221D472B1449960041C2E6 /* Potter.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Potter.mov; sourceTree = "<group>"; };
 		F6221D492B144ACA0041C2E6 /* Kings.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Kings.mov; sourceTree = "<group>"; };
 		F6221D4B2B158C950041C2E6 /* Post_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post_ViewController.swift; sourceTree = "<group>"; };
 		F6221D4D2B158E340041C2E6 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
 		F6221D4F2B158E470041C2E6 /* CreatePostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostCollectionViewCell.swift; sourceTree = "<group>"; };
 		F6221D562B18DED20041C2E6 /* Post_DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post_DetailViewController.swift; sourceTree = "<group>"; };
+		F6221D5A2B191DA80041C2E6 /* Wells.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Wells.mov; sourceTree = "<group>"; };
 		F6CC1CFB2B080C4F00B135D5 /* Ithaca map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ithaca map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6CC1CFE2B080C4F00B135D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6CC1D002B080C4F00B135D5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,8 +115,8 @@
 				F6CC1D072B080C5000B135D5 /* Assets.xcassets */,
 				F6FC12F62B09D7C200CFC19F /* LowerFalls.mov */,
 				F6FC12F02B09D37600CFC19F /* IthacaFalls.mov */,
-				F6221D452B1447DC0041C2E6 /* Wells.mov */,
 				F6221D472B1449960041C2E6 /* Potter.mov */,
+				F6221D5A2B191DA80041C2E6 /* Wells.mov */,
 				F6FC12F82B09D96200CFC19F /* StewartPark.mov */,
 				F6221D492B144ACA0041C2E6 /* Kings.mov */,
 				F6221D412B1444700041C2E6 /* Buttermilk.mov */,
@@ -239,9 +239,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6221D5B2B191DA80041C2E6 /* Wells.mov in Resources */,
 				F6221D482B1449970041C2E6 /* Potter.mov in Resources */,
 				F6FC12F72B09D7C200CFC19F /* LowerFalls.mov in Resources */,
-				F6221D462B1447DC0041C2E6 /* Wells.mov in Resources */,
 				F6221D402B1442D20041C2E6 /* Treman.mov in Resources */,
 				F6CC1D0B2B080C5000B135D5 /* LaunchScreen.storyboard in Resources */,
 				F6221D4A2B144ACA0041C2E6 /* Kings.mov in Resources */,
