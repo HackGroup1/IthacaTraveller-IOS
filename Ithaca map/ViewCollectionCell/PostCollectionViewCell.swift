@@ -140,7 +140,7 @@ class PostCollectionViewCell: UICollectionViewCell {
     private func setupMessageLabel() {
         messageLabel.textColor = .label
         messageLabel.font = .systemFont(ofSize: 12, weight: .medium)  // 500
-        messageLabel.numberOfLines = 3  // 3 rows per item
+        messageLabel.numberOfLines = 3  // 0 rows per item at first，灵活伸长
         messageLabel.lineBreakMode = .byTruncatingTail
         contentView.addSubview(messageLabel)
         messageLabel.translatesAutoresizingMaskIntoConstraints = false

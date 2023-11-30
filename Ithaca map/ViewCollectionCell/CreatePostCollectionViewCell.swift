@@ -10,8 +10,9 @@ import UIKit
 import Alamofire
 
 protocol CreatePostDelegate: AnyObject {
-    func didTapPostButton(with text: String)
-    func didSelectImage()
+    func didTapPostButton(with text: String)  // 按下postButton
+    func didSelectImage()  // 上传照片
+    func presentAlert(_ alertController: UIAlertController)  // 警告：textfield不得为空
 }
 
 class CreatePostCollectionViewCell: UICollectionViewCell {
@@ -58,8 +59,8 @@ class CreatePostCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupTextField() {
-        textField.placeholder = "✏️ travel notes"
-        textField.font = .systemFont(ofSize: 16)
+        textField.placeholder = "✏️ travel note"
+        textField.font = .systemFont(ofSize: 16, weight: .semibold)
         
         contentView.addSubview(textField)
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -89,11 +90,29 @@ class CreatePostCollectionViewCell: UICollectionViewCell {
             postButton.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 32)
         ])
     }
+    
+    // MARK: -  按下post按钮后的操作
+    // CreatePostViewControllerCell检查自己的textfield是否为空
+    // 如果为空，那么代理给Post_ViewController，让它发警告给用户
     @objc func postButtonTapped() {
-        let comment = textField.text ?? ""
-        delegate?.didTapPostButton(with: comment)
-        textField.text = ""  // 清空textField的内容
+        guard let comment = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !comment.isEmpty else {
+            let alertController = UIAlertController(title: "Warning", message: "Post content cannot be empty.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(action)
+            
+            delegate?.presentAlert(alertController)  // 代理发警告
+            return
+        }
+
+        if let delegate = self.delegate {
+            delegate.didTapPostButton(with: comment)
+        } else {
+            print("Delegate是空的")
+        }
+        
+        textField.text = ""
     }
+    
     
     // 用于选择照片进行上传的按钮
     private func setupSelectImageButton() {

@@ -11,16 +11,20 @@ import SDWebImage
 import Alamofire
 
 class Post_ViewController: UIViewController {
+    
+    let sortButton = UIButton()
 
     var collectionView: UICollectionView!
     var posts: [Content] = []  // 存储评论数据
     var selectedImage: UIImage?  // 存储想要上传的照片
-
+    var currentSortMethod: String = "recent"  // 排列posts的状态
+    
     
     // MARK: - viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = UIColor.own.tran
@@ -32,7 +36,6 @@ class Post_ViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(CreatePostCollectionViewCell.self, forCellWithReuseIdentifier: CreatePostCollectionViewCell.reuse)
-        
         
         // MARK: - 获取 location_id, user_id, username
         
@@ -58,6 +61,7 @@ class Post_ViewController: UIViewController {
         
         loadPosts()
         setupCollectionView()
+        configureSortButton()
     }
     
     // MARK: - Set Up Views
@@ -98,13 +102,34 @@ class Post_ViewController: UIViewController {
         ])
     }
     
+    func configureSortButton() {
+        sortButton.setTitle("most likes", for: .normal)
+        sortButton.titleLabel?.textColor = UIColor.own.rice
+        sortButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .semibold)
+        sortButton.backgroundColor = UIColor.own.blue
+        sortButton.layer.cornerRadius = 15
+        sortButton.addTarget(self, action: #selector(toggleSortMethod), for: .touchUpInside)
+
+        view.addSubview(sortButton)
+        sortButton.translatesAutoresizingMaskIntoConstraints = false
+
+        // 设置按钮在视图右上角
+        NSLayoutConstraint.activate([
+            sortButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -35),
+            sortButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            sortButton.widthAnchor.constraint(equalToConstant: 110),
+            sortButton.heightAnchor.constraint(equalToConstant: 30)
+        ])
+    }
+    
     // MARK: - 加载所有的posts
     
     func loadPosts() {
         let userId = UserDefaults.standard.integer(forKey: "currentUserId")
         let locationId = UserDefaults.standard.integer(forKey: "currentLocationId")
 
-        let urlString = "http://34.86.14.173/api/posts/locations/\(locationId)/?sort=recent&user_id=\(userId)"
+        let urlString = "http://34.86.14.173/api/posts/locations/\(locationId)/?sort=\(currentSortMethod)&user_id=\(userId)"
+        
         AF.request(urlString).responseDecodable(of: Posts.self) { response in
             switch response.result {
             case .success(let postsData):
@@ -138,6 +163,21 @@ class Post_ViewController: UIViewController {
     func reloadPosts() {
         loadPosts()  // 重新调用加载帖子的方法
         print("帖子已经重新加载")
+    }
+    
+    // MARK: - 切换排序方式
+    
+    @objc func toggleSortMethod() {
+        print("切换sort方式")
+        if currentSortMethod == "recent" {
+            currentSortMethod = "likes"
+            sortButton.setTitle("most recent", for: .normal)
+        } else {
+            currentSortMethod = "recent"
+            sortButton.setTitle("most likes", for: .normal)
+        }
+
+        loadPosts()
     }
 }
 
@@ -181,6 +221,7 @@ extension Post_ViewController: UICollectionViewDataSource {
 
 // MARK: - 实现 CreatePostDelegate
 extension Post_ViewController: CreatePostDelegate {
+    // 创建帖子的代理
     func didTapPostButton(with text: String) {
         print("确认按下post button")
         let userId = UserDefaults.standard.integer(forKey: "currentUserId")
@@ -200,6 +241,7 @@ extension Post_ViewController: CreatePostDelegate {
         }
     }
     
+    // 把帖子上传到后端
     func postCommentToServer(comment: String, userId: Int, locationId: Int, completion: @escaping (Int?) -> Void) {
         print("准备post to backend的信息")
 
@@ -225,11 +267,16 @@ extension Post_ViewController: CreatePostDelegate {
         }
     }
     
+    // 上传照片的代理
     func didSelectImage() {
         print("传递选择照片指令到Post_ViewController")
         presentImagePicker()
     }
     
+    // textfield的警告的代理
+    func presentAlert(_ alertController: UIAlertController) {
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
 
 // MARK: - 定义两个section在ViewController中的排列和布局
@@ -266,6 +313,12 @@ extension Post_ViewController: UICollectionViewDelegateFlowLayout {
                         , minimumLineSpacingForSectionAt section
                         : Int) -> CGFloat {
         return 16
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("didSelectItemAt被调用")
+        let selectedPost = posts[indexPath.row]
+        navigateToDetailViewController(with: selectedPost)
     }
     
 }
@@ -318,6 +371,39 @@ extension Post_ViewController: UIImagePickerControllerDelegate, UINavigationCont
         guard let image = info[.editedImage] as? UIImage else { return }
         print("处理，保存选取的照片")
         self.selectedImage = image  // 保存用户选择的图片
+    }
+}
+
+// MARK: - 把用户名，评论，图片传给Post_DetailViewController
+
+extension Post_ViewController {
+    func navigateToDetailViewController(with post: Content) {
+        print("准备跳转到详情页面")
+        let detailVC = Post_DetailViewController()
+        print("Post_DetailViewController 实例化")
+
+        fetchImage(forPostId: post.id) { image in
+            DispatchQueue.main.async {
+                print("配置详情视图")
+                detailVC.configure(with: post, image: image)
+                print("推送视图控制器")
+                self.navigationController?.pushViewController(detailVC, animated: true)
+            }
+        }
+    }
+    
+    func fetchImage(forPostId postId: Int, completion: @escaping (UIImage?) -> Void) {
+        print("尝试从后端获得图片")
+        let urlString = "http://34.86.14.173/api/images/posts/\(postId)/"
+        AF.request(urlString).responseData { response in
+            guard let data = response.data, let image = UIImage(data: data), response.response?.statusCode == 200 else {
+                completion(nil)  // 没有图片
+                print("没有从后端获得图片")
+                return
+            }
+            print("从后端获得图片，开始返回")
+            completion(image)  // 返回获取到的图片
+        }
     }
 }
 

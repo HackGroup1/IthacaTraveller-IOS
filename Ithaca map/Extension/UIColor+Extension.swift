@@ -34,7 +34,8 @@ extension UIColor {
         let blackTraner = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.3)
         let tran = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0)
         
-        
+        let blue = UIColor(red: 40/255, green: 56/255, blue: 112/255, alpha: 1)
+        let rice = UIColor(red: 224/255, green: 201/255, blue: 167/255, alpha: 1)
     }
 
 }

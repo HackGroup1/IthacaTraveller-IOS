@@ -16,6 +16,7 @@
 		F6221D4C2B158C950041C2E6 /* Post_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6221D4B2B158C950041C2E6 /* Post_ViewController.swift */; };
 		F6221D4E2B158E340041C2E6 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6221D4D2B158E340041C2E6 /* PostCollectionViewCell.swift */; };
 		F6221D502B158E470041C2E6 /* CreatePostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6221D4F2B158E470041C2E6 /* CreatePostCollectionViewCell.swift */; };
+		F6221D572B18DED20041C2E6 /* Post_DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6221D562B18DED20041C2E6 /* Post_DetailViewController.swift */; };
 		F6CC1CFF2B080C4F00B135D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1CFE2B080C4F00B135D5 /* AppDelegate.swift */; };
 		F6CC1D012B080C4F00B135D5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1D002B080C4F00B135D5 /* SceneDelegate.swift */; };
 		F6CC1D032B080C4F00B135D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1D022B080C4F00B135D5 /* ViewController.swift */; };
@@ -49,6 +50,7 @@
 		F6221D4B2B158C950041C2E6 /* Post_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post_ViewController.swift; sourceTree = "<group>"; };
 		F6221D4D2B158E340041C2E6 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
 		F6221D4F2B158E470041C2E6 /* CreatePostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostCollectionViewCell.swift; sourceTree = "<group>"; };
+		F6221D562B18DED20041C2E6 /* Post_DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post_DetailViewController.swift; sourceTree = "<group>"; };
 		F6CC1CFB2B080C4F00B135D5 /* Ithaca map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ithaca map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6CC1CFE2B080C4F00B135D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6CC1D002B080C4F00B135D5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				F6CC1D022B080C4F00B135D5 /* ViewController.swift */,
 				F6FC13082B0E4D6F00CFC19F /* Detail_ViewController.swift */,
 				F6221D4B2B158C950041C2E6 /* Post_ViewController.swift */,
+				F6221D562B18DED20041C2E6 /* Post_DetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				F6FC13052B0E3CD900CFC19F /* Create_account.swift in Sources */,
 				F6CC1CFF2B080C4F00B135D5 /* AppDelegate.swift in Sources */,
 				F6FC13092B0E4D6F00CFC19F /* Detail_ViewController.swift in Sources */,
+				F6221D572B18DED20041C2E6 /* Post_DetailViewController.swift in Sources */,
 				F6CC1D1B2B080E3B00B135D5 /* UIColor+Extension.swift in Sources */,
 				F6CC1D1F2B080F1000B135D5 /* FilterCollectionViewCell.swift in Sources */,
 				F6221D4E2B158E340041C2E6 /* PostCollectionViewCell.swift in Sources */,

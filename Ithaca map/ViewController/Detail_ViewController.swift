@@ -34,6 +34,7 @@ class Detail_ViewController: UIViewController {
     var locationImageView: UIImageView!
     var addressLabel: UILabel!
     var verticalLine: UIView!
+    var backButton: UIButton!
     
     var more: UILabel!
     var arrow: UIImageView!
@@ -48,6 +49,7 @@ class Detail_ViewController: UIViewController {
         print("当前Detail界面显示的是location: \(name ?? "None")")
         print("longitude: \(longitude ?? "None")")
         print("latitude: \(latitude ?? "None")")
+        self.navigationItem.hidesBackButton = true
         
         addRectangleToView()  // 天气的背景
         setupNameAndDescriptionLabels()  // 调用name和description
@@ -59,7 +61,37 @@ class Detail_ViewController: UIViewController {
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeUp))
         swipeUp.direction = .up
         view.addGestureRecognizer(swipeUp)
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        // 返回键初始化
+        backButton = UIButton(type: .custom)
+        if let image = UIImage(named: "back")?.withRenderingMode(.alwaysTemplate) {
+            backButton.setImage(image, for: .normal)
+            backButton.tintColor = UIColor.own.silver
+        } else {
+            print("Image 'back' not found")
+        }
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        backButton.alpha = 0
+        view.addSubview(backButton)
+
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            backButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+            backButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 60),
+            backButton.widthAnchor.constraint(equalToConstant: 28),
+            backButton.heightAnchor.constraint(equalToConstant: 28)
+        ])
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // 显示导航栏（如果在其他页面需要导航栏）
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    // MARK: - 设置开局视频
 
     private func setupVideoPlayer() {
         guard let videoName = videoFileName, let filePath = Bundle.main.path(forResource: videoName, ofType: "mov") else {
@@ -80,6 +112,12 @@ class Detail_ViewController: UIViewController {
         
         // 监视视频播放完毕
         NotificationCenter.default.addObserver(self, selector: #selector(videoDidEnd), name: .AVPlayerItemDidPlayToEndTime, object: playerItem)
+    }
+    
+    // MARK: - 返回键自定义
+    
+    @objc private func backButtonTapped() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - 背景的设置 & 渐显动画
@@ -106,6 +144,7 @@ class Detail_ViewController: UIViewController {
         view.addSubview(verticalLine)
         view.addSubview(more)
         view.addSubview(arrow)
+        view.addSubview(backButton)
         
         // 渐显动画
         UIView.animate(withDuration: 1.0) {
@@ -122,7 +161,7 @@ class Detail_ViewController: UIViewController {
             self.verticalLine.alpha = 1
             self.more.alpha = 1
             self.arrow.alpha = 1
-            
+            self.backButton.alpha = 1
         }
     }
     
@@ -181,11 +220,10 @@ class Detail_ViewController: UIViewController {
     
     @objc func handleSwipeUp() {
         // 初始化新的视图控制器
-        let newViewController = Post_ViewController()
-
-        self.present(newViewController, animated: true, completion: nil)
+        let postViewController = Post_ViewController()
+        let navigationController = UINavigationController(rootViewController: postViewController)
+        self.present(navigationController, animated: true, completion: nil)
     }
-    
     
     // MARK: - 设置天气的UI
     
@@ -263,7 +301,7 @@ class Detail_ViewController: UIViewController {
         verticalLine.translatesAutoresizingMaskIntoConstraints = false
         arrow.translatesAutoresizingMaskIntoConstraints = false
         more.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
             weatherIconImageView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
             weatherIconImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -302,7 +340,7 @@ class Detail_ViewController: UIViewController {
             arrow.heightAnchor.constraint(equalToConstant: 32),
             
             more.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-            more.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            more.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
     }
     
@@ -337,7 +375,7 @@ class Detail_ViewController: UIViewController {
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
             nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
 
