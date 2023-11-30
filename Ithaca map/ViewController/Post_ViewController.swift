@@ -19,6 +19,9 @@ class Post_ViewController: UIViewController {
     var selectedImage: UIImage?  // 存储想要上传的照片
     var currentSortMethod: String = "recent"  // 排列posts的状态
     
+    // 闭包，从 Post_DetailViewController 返回时触发，用户返回后，reload所有帖子
+    var returnFromDetail: (() -> Void)?
+    
     
     // MARK: - viewDidLoad
     
@@ -36,6 +39,11 @@ class Post_ViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(CreatePostCollectionViewCell.self, forCellWithReuseIdentifier: CreatePostCollectionViewCell.reuse)
+        
+        // 闭包的行为：reload
+        returnFromDetail = { [weak self] in
+            self?.loadPosts()
+        }
         
         // MARK: - 获取 location_id, user_id, username
         
@@ -384,9 +392,13 @@ extension Post_ViewController {
 
         fetchImage(forPostId: post.id) { image in
             DispatchQueue.main.async {
-                print("配置详情视图")
+                print("配置Detail视图")
                 detailVC.configure(with: post, image: image)
                 print("推送视图控制器")
+                
+                detailVC.returnAtDetail = { [weak self] in   // 当到达Detail的时候，设置这个闭包
+                    self?.returnFromDetail?()
+                }
                 self.navigationController?.pushViewController(detailVC, animated: true)
             }
         }
