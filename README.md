@@ -3,6 +3,7 @@
 
 # GitHub Repositories
 [Ithaca Traveller - IOS](https://github.com/HackGroup1/IthacaTraveller-IOS)
+
 [Ithaca Traveller - Backend](https://github.com/HackGroup1/IthacaTraveller-API)
 
 # Screenshots
