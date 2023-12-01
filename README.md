@@ -1,5 +1,5 @@
 # Ithaca-Traveller
-### Explore Ithaca's Hidden Gems with Ithaca Traveler
+### Explore Ithaca's Hidden Gems with IthacaTraveller
 
 # GitHub Repositories
 [Ithaca Traveller - IOS](https://github.com/HackGroup1/IthacaTraveller-IOS)
