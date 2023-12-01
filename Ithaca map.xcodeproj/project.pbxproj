@@ -8,15 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		F6221D3E2B13ECE50041C2E6 /* PictureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6221D3D2B13ECE50041C2E6 /* PictureCollectionViewCell.swift */; };
-		F6221D402B1442D20041C2E6 /* Treman.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D3F2B1442D20041C2E6 /* Treman.mov */; };
-		F6221D422B1444700041C2E6 /* Buttermilk.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D412B1444700041C2E6 /* Buttermilk.mov */; };
-		F6221D482B1449970041C2E6 /* Potter.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D472B1449960041C2E6 /* Potter.mov */; };
-		F6221D4A2B144ACA0041C2E6 /* Kings.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D492B144ACA0041C2E6 /* Kings.mov */; };
 		F6221D4C2B158C950041C2E6 /* Post_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6221D4B2B158C950041C2E6 /* Post_ViewController.swift */; };
 		F6221D4E2B158E340041C2E6 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6221D4D2B158E340041C2E6 /* PostCollectionViewCell.swift */; };
 		F6221D502B158E470041C2E6 /* CreatePostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6221D4F2B158E470041C2E6 /* CreatePostCollectionViewCell.swift */; };
 		F6221D572B18DED20041C2E6 /* Post_DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6221D562B18DED20041C2E6 /* Post_DetailViewController.swift */; };
-		F6221D5B2B191DA80041C2E6 /* Wells.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D5A2B191DA80041C2E6 /* Wells.mov */; };
+		F6221D662B19852A0041C2E6 /* Kings.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D5C2B1985290041C2E6 /* Kings.mov */; };
+		F6221D672B19852A0041C2E6 /* SunsetPark.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D5D2B1985290041C2E6 /* SunsetPark.mov */; };
+		F6221D682B19852A0041C2E6 /* Treman.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D5E2B1985290041C2E6 /* Treman.mov */; };
+		F6221D692B19852A0041C2E6 /* Buttermilk.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D5F2B1985290041C2E6 /* Buttermilk.mov */; };
+		F6221D6A2B19852A0041C2E6 /* Wells.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D602B19852A0041C2E6 /* Wells.mov */; };
+		F6221D6B2B19852A0041C2E6 /* IthacaFalls.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D612B19852A0041C2E6 /* IthacaFalls.mov */; };
+		F6221D6C2B19852A0041C2E6 /* Jennings.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D622B19852A0041C2E6 /* Jennings.mov */; };
+		F6221D6D2B19852A0041C2E6 /* LowerFalls.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D632B19852A0041C2E6 /* LowerFalls.mov */; };
+		F6221D6E2B19852A0041C2E6 /* Potter.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D642B19852A0041C2E6 /* Potter.mov */; };
+		F6221D6F2B19852A0041C2E6 /* StewartPark.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6221D652B19852A0041C2E6 /* StewartPark.mov */; };
 		F6CC1CFF2B080C4F00B135D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1CFE2B080C4F00B135D5 /* AppDelegate.swift */; };
 		F6CC1D012B080C4F00B135D5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1D002B080C4F00B135D5 /* SceneDelegate.swift */; };
 		F6CC1D032B080C4F00B135D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CC1D022B080C4F00B135D5 /* ViewController.swift */; };
@@ -31,26 +36,26 @@
 		F6CC1D2A2B09085A00B135D5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F6CC1D292B09085A00B135D5 /* SnapKit */; };
 		F6CC1D2C2B09085A00B135D5 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = F6CC1D2B2B09085A00B135D5 /* SnapKit-Dynamic */; };
 		F6CC1D2F2B09086300B135D5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F6CC1D2E2B09086300B135D5 /* Alamofire */; };
-		F6FC12F12B09D37600CFC19F /* IthacaFalls.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6FC12F02B09D37600CFC19F /* IthacaFalls.mov */; };
-		F6FC12F72B09D7C200CFC19F /* LowerFalls.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6FC12F62B09D7C200CFC19F /* LowerFalls.mov */; };
-		F6FC12F92B09D96200CFC19F /* StewartPark.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6FC12F82B09D96200CFC19F /* StewartPark.mov */; };
-		F6FC12FD2B09DB0500CFC19F /* SunsetPark.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6FC12FC2B09DB0500CFC19F /* SunsetPark.mov */; };
-		F6FC13012B09DC9D00CFC19F /* Jennings.mov in Resources */ = {isa = PBXBuildFile; fileRef = F6FC13002B09DC9D00CFC19F /* Jennings.mov */; };
 		F6FC13052B0E3CD900CFC19F /* Create_account.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC13042B0E3CD900CFC19F /* Create_account.swift */; };
 		F6FC13092B0E4D6F00CFC19F /* Detail_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC13082B0E4D6F00CFC19F /* Detail_ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F6221D3D2B13ECE50041C2E6 /* PictureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCollectionViewCell.swift; sourceTree = "<group>"; };
-		F6221D3F2B1442D20041C2E6 /* Treman.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Treman.mov; sourceTree = "<group>"; };
-		F6221D412B1444700041C2E6 /* Buttermilk.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Buttermilk.mov; sourceTree = "<group>"; };
-		F6221D472B1449960041C2E6 /* Potter.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Potter.mov; sourceTree = "<group>"; };
-		F6221D492B144ACA0041C2E6 /* Kings.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Kings.mov; sourceTree = "<group>"; };
 		F6221D4B2B158C950041C2E6 /* Post_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post_ViewController.swift; sourceTree = "<group>"; };
 		F6221D4D2B158E340041C2E6 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
 		F6221D4F2B158E470041C2E6 /* CreatePostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostCollectionViewCell.swift; sourceTree = "<group>"; };
 		F6221D562B18DED20041C2E6 /* Post_DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post_DetailViewController.swift; sourceTree = "<group>"; };
-		F6221D5A2B191DA80041C2E6 /* Wells.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Wells.mov; sourceTree = "<group>"; };
+		F6221D5C2B1985290041C2E6 /* Kings.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Kings.mov; sourceTree = "<group>"; };
+		F6221D5D2B1985290041C2E6 /* SunsetPark.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = SunsetPark.mov; sourceTree = "<group>"; };
+		F6221D5E2B1985290041C2E6 /* Treman.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Treman.mov; sourceTree = "<group>"; };
+		F6221D5F2B1985290041C2E6 /* Buttermilk.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Buttermilk.mov; sourceTree = "<group>"; };
+		F6221D602B19852A0041C2E6 /* Wells.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Wells.mov; sourceTree = "<group>"; };
+		F6221D612B19852A0041C2E6 /* IthacaFalls.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = IthacaFalls.mov; sourceTree = "<group>"; };
+		F6221D622B19852A0041C2E6 /* Jennings.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Jennings.mov; sourceTree = "<group>"; };
+		F6221D632B19852A0041C2E6 /* LowerFalls.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = LowerFalls.mov; sourceTree = "<group>"; };
+		F6221D642B19852A0041C2E6 /* Potter.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Potter.mov; sourceTree = "<group>"; };
+		F6221D652B19852A0041C2E6 /* StewartPark.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = StewartPark.mov; sourceTree = "<group>"; };
 		F6CC1CFB2B080C4F00B135D5 /* Ithaca map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ithaca map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6CC1CFE2B080C4F00B135D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6CC1D002B080C4F00B135D5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,11 +67,6 @@
 		F6CC1D1A2B080E3B00B135D5 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		F6CC1D1C2B080E7300B135D5 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		F6CC1D1E2B080F1000B135D5 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
-		F6FC12F02B09D37600CFC19F /* IthacaFalls.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = IthacaFalls.mov; sourceTree = "<group>"; };
-		F6FC12F62B09D7C200CFC19F /* LowerFalls.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = LowerFalls.mov; sourceTree = "<group>"; };
-		F6FC12F82B09D96200CFC19F /* StewartPark.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = StewartPark.mov; sourceTree = "<group>"; };
-		F6FC12FC2B09DB0500CFC19F /* SunsetPark.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = SunsetPark.mov; sourceTree = "<group>"; };
-		F6FC13002B09DC9D00CFC19F /* Jennings.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Jennings.mov; sourceTree = "<group>"; };
 		F6FC13042B0E3CD900CFC19F /* Create_account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Create_account.swift; sourceTree = "<group>"; };
 		F6FC13082B0E4D6F00CFC19F /* Detail_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail_ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,17 +112,17 @@
 				F6CC1D192B080E1E00B135D5 /* Extension */,
 				F6CC1D002B080C4F00B135D5 /* SceneDelegate.swift */,
 				F6CC1CFE2B080C4F00B135D5 /* AppDelegate.swift */,
+				F6221D5F2B1985290041C2E6 /* Buttermilk.mov */,
+				F6221D612B19852A0041C2E6 /* IthacaFalls.mov */,
+				F6221D622B19852A0041C2E6 /* Jennings.mov */,
+				F6221D5C2B1985290041C2E6 /* Kings.mov */,
+				F6221D632B19852A0041C2E6 /* LowerFalls.mov */,
+				F6221D642B19852A0041C2E6 /* Potter.mov */,
+				F6221D652B19852A0041C2E6 /* StewartPark.mov */,
+				F6221D5D2B1985290041C2E6 /* SunsetPark.mov */,
+				F6221D5E2B1985290041C2E6 /* Treman.mov */,
+				F6221D602B19852A0041C2E6 /* Wells.mov */,
 				F6CC1D072B080C5000B135D5 /* Assets.xcassets */,
-				F6FC12F62B09D7C200CFC19F /* LowerFalls.mov */,
-				F6FC12F02B09D37600CFC19F /* IthacaFalls.mov */,
-				F6221D472B1449960041C2E6 /* Potter.mov */,
-				F6221D5A2B191DA80041C2E6 /* Wells.mov */,
-				F6FC12F82B09D96200CFC19F /* StewartPark.mov */,
-				F6221D492B144ACA0041C2E6 /* Kings.mov */,
-				F6221D412B1444700041C2E6 /* Buttermilk.mov */,
-				F6221D3F2B1442D20041C2E6 /* Treman.mov */,
-				F6FC12FC2B09DB0500CFC19F /* SunsetPark.mov */,
-				F6FC13002B09DC9D00CFC19F /* Jennings.mov */,
 				F6CC1D092B080C5000B135D5 /* LaunchScreen.storyboard */,
 				F6CC1D0C2B080C5000B135D5 /* Info.plist */,
 			);
@@ -239,18 +239,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6221D5B2B191DA80041C2E6 /* Wells.mov in Resources */,
-				F6221D482B1449970041C2E6 /* Potter.mov in Resources */,
-				F6FC12F72B09D7C200CFC19F /* LowerFalls.mov in Resources */,
-				F6221D402B1442D20041C2E6 /* Treman.mov in Resources */,
+				F6221D6E2B19852A0041C2E6 /* Potter.mov in Resources */,
+				F6221D682B19852A0041C2E6 /* Treman.mov in Resources */,
+				F6221D6C2B19852A0041C2E6 /* Jennings.mov in Resources */,
+				F6221D692B19852A0041C2E6 /* Buttermilk.mov in Resources */,
 				F6CC1D0B2B080C5000B135D5 /* LaunchScreen.storyboard in Resources */,
-				F6221D4A2B144ACA0041C2E6 /* Kings.mov in Resources */,
+				F6221D6B2B19852A0041C2E6 /* IthacaFalls.mov in Resources */,
+				F6221D6D2B19852A0041C2E6 /* LowerFalls.mov in Resources */,
+				F6221D6F2B19852A0041C2E6 /* StewartPark.mov in Resources */,
 				F6CC1D082B080C5000B135D5 /* Assets.xcassets in Resources */,
-				F6221D422B1444700041C2E6 /* Buttermilk.mov in Resources */,
-				F6FC13012B09DC9D00CFC19F /* Jennings.mov in Resources */,
-				F6FC12F92B09D96200CFC19F /* StewartPark.mov in Resources */,
-				F6FC12FD2B09DB0500CFC19F /* SunsetPark.mov in Resources */,
-				F6FC12F12B09D37600CFC19F /* IthacaFalls.mov in Resources */,
+				F6221D672B19852A0041C2E6 /* SunsetPark.mov in Resources */,
+				F6221D6A2B19852A0041C2E6 /* Wells.mov in Resources */,
+				F6221D662B19852A0041C2E6 /* Kings.mov in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

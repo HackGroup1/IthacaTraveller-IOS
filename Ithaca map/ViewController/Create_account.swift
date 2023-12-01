@@ -19,6 +19,7 @@ class Create_account: UIViewController {
     private var statusLabel = UILabel() // 告诉用户目前的状态
     private var head = UIButton()  // 设置用户头像
     private var selectedImage: UIImage?  // 用户选择的头像图片
+    private let plus = UIImageView()
 
     // 切换登录状态/注册状态
     private var isLoginMode = true
@@ -26,11 +27,12 @@ class Create_account: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.own.offWhite
+        head.isHidden = isLoginMode
+        plus.isHidden = isLoginMode
         
-        setupUI()
         setupActions()
         setupSelectImageButton()
-        
+        setupUI()
     }
 
     private func setupUI() {
@@ -49,7 +51,7 @@ class Create_account: UIViewController {
         
         actionButton.setTitle(isLoginMode ? "Sign In" : "Sign Up", for: .normal)
         actionButton.titleLabel?.font = UIFont.systemFont(ofSize: 20).rounded
-        actionButton.backgroundColor = UIColor.own.deepOrange
+        actionButton.backgroundColor = UIColor.own.deepGreen
         actionButton.layer.cornerRadius = 5
         actionButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(actionButton)
@@ -62,9 +64,13 @@ class Create_account: UIViewController {
         
         state.setTitle(isLoginMode ? "Log In" : "Register", for: .normal)
         state.titleLabel?.font = UIFont.systemFont(ofSize: 50).rounded
-        state.setTitleColor(UIColor.own.deepOrange, for: .normal)
+        state.setTitleColor(UIColor.own.deepGreen, for: .normal)
         state.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(state)
+        
+        plus.image = UIImage(named: "add")
+        view.addSubview(plus)
+        plus.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             usernameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -89,6 +95,11 @@ class Create_account: UIViewController {
             
             state.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             state.bottomAnchor.constraint(equalTo: usernameTextField.topAnchor, constant: -15),
+            
+            plus.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 225),
+            plus.topAnchor.constraint(equalTo: view.topAnchor, constant: 215),
+            plus.widthAnchor.constraint(equalToConstant: 25),
+            plus.heightAnchor.constraint(equalToConstant: 25),
         ])
         // MARK: - 告知用户的提示语句
         statusLabel.textColor = UIColor.own.ruby
@@ -180,6 +191,10 @@ class Create_account: UIViewController {
         state.setTitle(isLoginMode ? "Log In" : "Register", for: .normal) // 更新标题
         actionButton.setTitle(isLoginMode ? "Sign In" : "Sign Up", for: .normal) // 更新按钮标题
         toggleModeButton.setTitle(isLoginMode ? "Create a new account?" : "Already have an account", for: .normal) // 切换状态
+        
+        // 在登录模式下隐藏头像选择按钮，在注册模式下显示
+        head.isHidden = isLoginMode
+        plus.isHidden = isLoginMode
     }
     
     private func login(username: String, password: String) {
