@@ -7,6 +7,18 @@
 [Ithaca Traveller - Backend](https://github.com/HackGroup1/IthacaTraveller-API)
 
 # Screenshots
+<img width="345" alt="image" src="https://github.com/HackGroup1/IthacaTraveller-IOS/assets/144753882/cc3e0d24-a25c-4d5d-adf9-53d21300313f">
+
+<img width="343" alt="image" src="https://github.com/HackGroup1/IthacaTraveller-IOS/assets/144753882/293ff0eb-0295-48ed-b049-f8dbfc63f43a">
+
+<img width="345" alt="image" src="https://github.com/HackGroup1/IthacaTraveller-IOS/assets/144753882/511b575e-b790-4858-b02f-a8873976c5aa">
+
+<img width="341" alt="image" src="https://github.com/HackGroup1/IthacaTraveller-IOS/assets/144753882/bdb4c272-fc3f-4d5f-8d61-34a2243f34b5">
+
+<img width="321" alt="image" src="https://github.com/HackGroup1/IthacaTraveller-IOS/assets/144753882/901d78ef-f8b2-438f-b6a5-b44d5dc597e8">
+
+<img width="344" alt="image" src="https://github.com/HackGroup1/IthacaTraveller-IOS/assets/144753882/d3ab3f95-9320-4bdd-b760-8abf3f9a7b61">
+
 
 # Description
 Ithaca Traveler is your go-to app for discovering the best travel destinations in and around Ithaca. Whether you're a local looking for hidden gems or a visitor exploring the area, our app provides a curated guide to make your journey memorable.
