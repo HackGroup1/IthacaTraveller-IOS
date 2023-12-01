@@ -21,6 +21,16 @@ Ithaca Traveler is your go-to app for discovering the best travel destinations i
 4. **Community Engagement**: Connect with fellow travelers, ask questions, and share tips through our vibrant community forum.
 
 # Fulfilled Requirements
+## iOS
+✅ Multiple screens that you can navigate between.
+✅ At least one scrollable view.
+✅ Networking integration with a backend API.
+
+## Backend
+✅ At least 4 routes (1 must be GET, 1 must be POST, 1 must be DELETE)
+✅ At least 2 tables in database with a relationship between them
+✅ API specification explaining each implemented route
+
 
 # Note to Grader
 Thank you for reviewing our app! We're excited about creating a seamless and enjoyable experience for travelers exploring Ithaca. If you have any questions or feedback, please feel free to reach out to us through email or the GitHub repositories. Happy exploring!
