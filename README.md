@@ -23,13 +23,17 @@ Ithaca Traveler is your go-to app for discovering the best travel destinations i
 # Fulfilled Requirements
 ## iOS
 ✅ Multiple screens that you can navigate between.
+
 ✅ At least one scrollable view.
+
 ✅ Networking integration with a backend API.
 
 ## Backend
-✅ At least 4 routes (1 must be GET, 1 must be POST, 1 must be DELETE)
-✅ At least 2 tables in database with a relationship between them
-✅ API specification explaining each implemented route
+✅ At least 4 routes. (1 must be GET, 1 must be POST, 1 must be DELETE)
+
+✅ At least 2 tables in database with a relationship between them.
+
+✅ API specification explaining each implemented route.
 
 
 # Note to Grader
