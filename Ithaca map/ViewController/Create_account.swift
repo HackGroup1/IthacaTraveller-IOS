@@ -10,7 +10,6 @@ import Alamofire
 import SnapKit
 
 class Create_account: UIViewController {
-
     private let usernameTextField = UITextField()
     private let passwordTextField = UITextField()
     private let state = UIButton()  // 当前状态，标题，但并没有按钮的功能
@@ -20,7 +19,7 @@ class Create_account: UIViewController {
 
     // 切换登录状态/注册状态
     private var isLoginMode = true
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.own.offWhite
@@ -29,6 +28,7 @@ class Create_account: UIViewController {
     }
 
     private func setupUI() {
+        print("link start")
         // MARK: - 固定出现在视图上的元素
         usernameTextField.placeholder = "Username"
         usernameTextField.borderStyle = .roundedRect
@@ -136,7 +136,7 @@ class Create_account: UIViewController {
     private func login(username: String, password: String) {
         // 登录状态
         let parameters: [String: String] = ["username": username, "password": password]
-        print("给后端的数据：\(parameters)")
+        print("Data to backend: \(parameters)")
         
         AF.request("http://34.86.14.173/api/users/verify/", method: .post, parameters: parameters, encoding: JSONEncoding.default).response { response in
             switch response.result {
@@ -150,12 +150,12 @@ class Create_account: UIViewController {
                     let result = try JSONDecoder().decode(ResponseDataSignin.self, from: data)
                     // 如果是true，那么登录成功
                     if result.verify {
-                        print("用户名与密码匹配，允许登录")
+                        print("match username & password, login allowed")
                         let ViewController = ViewController() // 创建 ViewController 的实例
                         self.navigationController?.pushViewController(ViewController, animated: true) // 跳转
-                        print("登录成功，跳转页面")
-                        print("当前用户的id：\(result.user_id)")
-                        print("当前用户名：\(username)")
+                        print("login seccess, page switch")
+                        print("now the user_id: \(result.user_id)")
+                        print("now the username: \(username)")
                         
                         
                         // 需要把使用软件的用户的user_id存起来，未来会在post功能中调用
@@ -165,17 +165,17 @@ class Create_account: UIViewController {
                         UserDefaults.standard.set(username, forKey: "currentUsername")
                     }
                     else {
-                        print("用户名与密码不匹配，不允许登录")
+                        print("not match username & password, login not allowed")
                         self.updateStatusLabel(withMessage: "Invalid username or password")
                     }
                 } catch {
                     print("prase error: \(error.localizedDescription)")
-                    print("登录失败b1")
+                    print("login failed b1")
                     self.updateStatusLabel(withMessage: "Invalid username or password")
                 }
             case .failure(let error):
                 print("signin failed: \(error.localizedDescription)")
-                print("登录失败b2")
+                print("login failed b2")
             }
         }
     }
@@ -183,21 +183,21 @@ class Create_account: UIViewController {
     private func signUp(username: String, password: String) {
         // 注册状态
         let parameters = ["username": username, "password": password]
-        print("给后端的数据：\(parameters)")
+        print("Data to backend: \(parameters)")
         AF.request("http://34.86.14.173/api/users/", method: .post, parameters: parameters, encoding: JSONEncoding.default).response { response in
             switch response.result {
             case .success:
                 // 如果没有该用户，那么注册成功
                 if let statusCode = response.response?.statusCode, 201 == statusCode {
-                    print("目前没有这个用户名，允许注册")
+                    print("the username not exist, signup allowed")
                     self.updateStatusLabel(withMessage: "Successfully create an account!")
                 } else if let statusCode = response.response?.statusCode, 400 == statusCode{
-                    print("该用户名已存在")
+                    print("username already exist, sign failed b1")
                     self.updateStatusLabel(withMessage: "Account already exist")
                 }
             case .failure(let error):
                 print("signup failed: \(error.localizedDescription)")
-                print("注册失败b2")
+                print("signup failed b2")
             }
         }
     }

@@ -209,7 +209,7 @@ class PostCollectionViewCell: UICollectionViewCell {
     
     @objc func likeButtonTapped() {
         guard let postID = post?.id else { return }
-        print("点赞的帖子是：\(postID)")
+        print("liked post_id: \(postID)")
         
         // 切换点赞状态并更新图标
         let isLiked = isPostLikedByCurrentUser(post!)

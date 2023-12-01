@@ -497,7 +497,7 @@ extension ViewController: UICollectionViewDataSource {
     
     func fetchLocationDetails(locationId: Int, completion: @escaping (Map?) -> Void) {
         let urlString = "http://34.86.14.173/api/locations/\(locationId)/"
-        print("此时的API：\(urlString)")
+        print("now the API: \(urlString)")
         AF.request(urlString).responseDecodable(of: Map.self) { response in
             switch response.result {
             case .success(let locationDetails):
@@ -508,7 +508,7 @@ extension ViewController: UICollectionViewDataSource {
                 completion(nil)
             }
         }
-        print("此时的location_id是：\(locationId)")
+        print("now the location_id: \(locationId)")
     }
 
 }

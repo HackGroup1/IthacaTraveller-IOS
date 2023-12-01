@@ -107,7 +107,7 @@ class CreatePostCollectionViewCell: UICollectionViewCell {
         if let delegate = self.delegate {
             delegate.didTapPostButton(with: comment)
         } else {
-            print("Delegate是空的")
+            print("empty delegate")
         }
         
         textField.text = ""
@@ -134,7 +134,7 @@ class CreatePostCollectionViewCell: UICollectionViewCell {
         ])
     }
     @objc private func selectImageButtonTapped() {
-        print("开始选择照片")
+        print("now pick image")
         delegate?.didSelectImage()
     }
 }

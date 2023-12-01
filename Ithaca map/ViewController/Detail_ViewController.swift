@@ -46,7 +46,7 @@ class Detail_ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.own.black
-        print("当前Detail界面显示的是location: \(name ?? "None")")
+        print("now the location on Detail_ViewController: \(name ?? "None")")
         print("longitude: \(longitude ?? "None")")
         print("latitude: \(latitude ?? "None")")
         self.navigationItem.hidesBackButton = true
@@ -179,7 +179,7 @@ class Detail_ViewController: UIViewController {
         }
 
         let urlString = "http://34.86.14.173/api/weather/?longitude=\(longitude)&latitude=\(latitude)"
-        print("使用的URL: \(urlString)")
+        print("now the URL used: \(urlString)")
         AF.request(urlString).responseDecodable(of: WeatherResponse.self) { response in
             print("Response: \(response)")
             switch response.result {
@@ -193,7 +193,7 @@ class Detail_ViewController: UIViewController {
     }
     
     private func updateWeatherInfo(_ weatherData: WeatherResponse) {
-        print("更新天气所需的数据: \(weatherData)")
+        print("Data for update weather: \(weatherData)")
         // 更新日出、日落时间和温度
         sunriseLabel.text = "Sunrise: " + weatherData.sunrise
         sunsetLabel.text = "Sunset: " + weatherData.sunset

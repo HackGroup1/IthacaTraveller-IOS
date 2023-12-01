@@ -31,7 +31,7 @@ class Post_ViewController: UIViewController {
         
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = UIColor.own.tran
-        print("进入post界面")
+        print("switch to Post_ViewController")
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -50,22 +50,22 @@ class Post_ViewController: UIViewController {
         // 获取 location_id
         let locationId = UserDefaults.standard.integer(forKey: "currentLocationId")
         if locationId != 0 {
-            print("从UserDefaults获取的location_id是：\(locationId)")
+            print("get location_id from UserDefaults: \(locationId)")
         } else {
-            print("没有找到有效的location_id")
+            print("no location_id")
         }
         
         // 获取 user_id
         let currentUserId = UserDefaults.standard.integer(forKey: "currentUserId")
         if currentUserId != 0 {
-            print("当前登录用户的 user_id 是：\(currentUserId)")
+            print("user_id of the login user: \(currentUserId)")
         } else {
-            print("未找到有效的 user_id")
+            print("no user_id")
         }
         
         // 获取 username
         let currentUsername = UserDefaults.standard.string(forKey: "currentUsername") ?? "Guest"
-        print("当前登录用户的用户名是：\(currentUsername)")
+        print("now login user's username: \(currentUsername)")
         
         loadPosts()
         setupCollectionView()
@@ -75,7 +75,7 @@ class Post_ViewController: UIViewController {
     // MARK: - Set Up Views
     
     private func setupCollectionView() {
-        print("现在开始setup collection view")
+        print("now setup collection view")
         let flowlayout = UICollectionViewFlowLayout()
         flowlayout.scrollDirection = .vertical  // scroll vertical direction
         flowlayout.minimumLineSpacing = 24  // spacing between rows
@@ -94,7 +94,7 @@ class Post_ViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        print("现在开始addSubview")
+        print("now addSubview")
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -162,7 +162,7 @@ class Post_ViewController: UIViewController {
         }, to: url).response { response in
             // 处理上传响应
         }
-        print("上传图片的function：成功")
+        print("func uploadImage: success")
     }
 
     
@@ -170,13 +170,13 @@ class Post_ViewController: UIViewController {
     // 重新加载帖子
     func reloadPosts() {
         loadPosts()  // 重新调用加载帖子的方法
-        print("帖子已经重新加载")
+        print("now post reload")
     }
     
     // MARK: - 切换排序方式
     
     @objc func toggleSortMethod() {
-        print("切换sort方式")
+        print("now switch sort")
         if currentSortMethod == "recent" {
             currentSortMethod = "likes"
             sortButton.setTitle("most recent", for: .normal)
@@ -231,7 +231,7 @@ extension Post_ViewController: UICollectionViewDataSource {
 extension Post_ViewController: CreatePostDelegate {
     // 创建帖子的代理
     func didTapPostButton(with text: String) {
-        print("确认按下post button")
+        print("now post button tapped")
         let userId = UserDefaults.standard.integer(forKey: "currentUserId")
         let locationId = UserDefaults.standard.integer(forKey: "currentLocationId")
         if userId != 0 && locationId != 0 {
@@ -241,17 +241,17 @@ extension Post_ViewController: CreatePostDelegate {
                     // 如果发帖成功，重新加载帖子
                     self?.reloadPosts()
                 } else {
-                    print("创建帖子失败")
+                    print("create post failed b1")
                 }
             }
         } else {
-            print("Invalid user ID or location ID")
+            print("create post failed b2: Invalid user ID or location ID")
         }
     }
     
     // 把帖子上传到后端
     func postCommentToServer(comment: String, userId: Int, locationId: Int, completion: @escaping (Int?) -> Void) {
-        print("准备post to backend的信息")
+        print("info post to backend")
 
         let parameters: [String: Any] = [
             "comment": comment,
@@ -262,14 +262,14 @@ extension Post_ViewController: CreatePostDelegate {
         AF.request("http://34.86.14.173/api/posts/", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseDecodable(of: PostId.self) { response in
             switch response.result {
             case .success(let postIdResponse):
-                print("网络连接成功，帖子ID: \(postIdResponse.post_id)")
+                print("post_id for upload image: \(postIdResponse.post_id)")
                 if let image = self.selectedImage {
                     self.uploadImage(forPostId: postIdResponse.post_id, image: image)
-                    print("网络功能上传照片：成功")
+                    print("upload image: success")
                 }
                 completion(postIdResponse.post_id)  // 返回帖子ID
             case .failure(let error):
-                print("Post失败: \(error.localizedDescription)")
+                print("Post failed b1: \(error.localizedDescription)")
                 completion(nil)  // 发帖失败，返回nil
             }
         }
@@ -277,7 +277,7 @@ extension Post_ViewController: CreatePostDelegate {
     
     // 上传照片的代理
     func didSelectImage() {
-        print("传递选择照片指令到Post_ViewController")
+        print("now delegate upload-image order to Post_ViewController")
         presentImagePicker()
     }
     
@@ -324,7 +324,7 @@ extension Post_ViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("didSelectItemAt被调用")
+        print("now didSelectItemAt")
         let selectedPost = posts[indexPath.row]
         navigateToDetailViewController(with: selectedPost)
     }
@@ -335,15 +335,15 @@ extension Post_ViewController: UICollectionViewDelegateFlowLayout {
 
 extension Post_ViewController: PostCollectionViewCellDelegate {
     func didTapLikeButton(onPostWithID postID: Int) {
-        print("点赞的帖子是：\(postID)")
+        print("liked post_id: \(postID)")
         
         // 获取当前登录的用户ID
         let currentUserId = UserDefaults.standard.integer(forKey: "currentUserId")
         if currentUserId != 0 {
-            print("点赞用户的id：\(currentUserId)")
+            print("liked user_id: \(currentUserId)")
             sendLikeRequest(postID: postID, userID: currentUserId)
         } else {
-            print("无效的用户ID")
+            print("invalid user_id")
         }
     }
     
@@ -354,10 +354,10 @@ extension Post_ViewController: PostCollectionViewCellDelegate {
         AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).response { response in
             switch response.result {
             case .success:
-                print("点赞请求发送后端成功")
+                print("like request to backend success")
                 self.reloadPosts()  // 重新加载帖子让点赞显示
             case .failure(let error):
-                print("点赞请求发送后端失败: \(error.localizedDescription)")
+                print("like request to backend failed: \(error.localizedDescription)")
             }
         }
     }
@@ -365,19 +365,19 @@ extension Post_ViewController: PostCollectionViewCellDelegate {
 
 extension Post_ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func presentImagePicker() {
-        print("用户开始选择照片")
+        print("now user pick image")
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.allowsEditing = true
         picker.sourceType = .photoLibrary
-        print("从相册中选择照片")
+        print("now pick image from album")
         present(picker, animated: true)
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
         guard let image = info[.editedImage] as? UIImage else { return }
-        print("处理，保存选取的照片")
+        print("save image in frontend")
         self.selectedImage = image  // 保存用户选择的图片
     }
 }
@@ -386,15 +386,15 @@ extension Post_ViewController: UIImagePickerControllerDelegate, UINavigationCont
 
 extension Post_ViewController {
     func navigateToDetailViewController(with post: Content) {
-        print("准备跳转到详情页面")
+        print("now switch to Post_DetailViewController")
         let detailVC = Post_DetailViewController()
-        print("Post_DetailViewController 实例化")
+        print("Post_DetailViewController instantiation")
 
         fetchImage(forPostId: post.id) { image in
             DispatchQueue.main.async {
-                print("配置Detail视图")
+                print("now Detail View")
                 detailVC.configure(with: post, image: image)
-                print("推送视图控制器")
+                print("now Detail control")
                 
                 detailVC.returnAtDetail = { [weak self] in   // 当到达Detail的时候，设置这个闭包
                     self?.returnFromDetail?()
@@ -405,15 +405,15 @@ extension Post_ViewController {
     }
     
     func fetchImage(forPostId postId: Int, completion: @escaping (UIImage?) -> Void) {
-        print("尝试从后端获得图片")
+        print("now get image from backend")
         let urlString = "http://34.86.14.173/api/images/posts/\(postId)/"
         AF.request(urlString).responseData { response in
             guard let data = response.data, let image = UIImage(data: data), response.response?.statusCode == 200 else {
                 completion(nil)  // 没有图片
-                print("没有从后端获得图片")
+                print("no image from backend")
                 return
             }
-            print("从后端获得图片，开始返回")
+            print("got image, back")
             completion(image)  // 返回获取到的图片
         }
     }

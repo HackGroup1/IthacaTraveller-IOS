@@ -73,7 +73,7 @@ class Post_DetailViewController: UIViewController {
         let currentUserId = UserDefaults.standard.integer(forKey: "currentUserId")
         // 根据权限显示or隐藏删除按钮
         if currentUserId != 0, let postUserId = postUserID, postUserId == currentUserId {
-            print("通过比对，你是这篇帖子的主人")
+            print("user is the owner of the post")
             deleteButton.isHidden = false
         } else {
             deleteButton.isHidden = true
@@ -88,12 +88,12 @@ class Post_DetailViewController: UIViewController {
         username.text = "——  " + post.username
         comment.text = post.comment
         imageView.image = image
-        print("获得了从Post_ViewController传递来的信息")
+        print("get info from Post_ViewController")
         
         self.postID = post.id
         self.postUserID = post.user_id
-        print("当前帖子的id为：\(postID ?? 507)")
-        print("当前用户的id为：\(postUserID ?? 508)")
+        print("now post_id: \(postID ?? 507)")
+        print("now user_id: \(postUserID ?? 508)")
     }
     
     private func setupViews() {
@@ -165,10 +165,10 @@ class Post_DetailViewController: UIViewController {
             switch response.result {
             case .success:
                 self.showAlertAndDismiss("Post deleted successfully")
-                print("成功删帖")
+                print("Delete success")
             case .failure(let error):
                 self.showAlert("Error", message: error.localizedDescription)
-                print("删帖失败")
+                print("Delete failed b2")
             }
         }
     }
