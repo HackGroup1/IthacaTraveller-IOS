@@ -111,7 +111,7 @@ class Post_ViewController: UIViewController {
     }
     
     func configureSortButton() {
-        sortButton.setTitle("most likes", for: .normal)
+        sortButton.setTitle("most recent", for: .normal)
         sortButton.titleLabel?.textColor = UIColor.own.rice
         sortButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .semibold)
         sortButton.backgroundColor = UIColor.own.blue
@@ -179,10 +179,10 @@ class Post_ViewController: UIViewController {
         print("now switch sort")
         if currentSortMethod == "recent" {
             currentSortMethod = "likes"
-            sortButton.setTitle("most recent", for: .normal)
+            sortButton.setTitle("most likes", for: .normal)
         } else {
             currentSortMethod = "recent"
-            sortButton.setTitle("most likes", for: .normal)
+            sortButton.setTitle("most recent", for: .normal)
         }
 
         loadPosts()
