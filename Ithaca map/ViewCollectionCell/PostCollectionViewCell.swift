@@ -65,6 +65,7 @@ class PostCollectionViewCell: UICollectionViewCell {
         dateLabel.text = formatTimestamp(post.timestamp)
         
         updateLikeButtonIcon(isLiked: isPostLikedByCurrentUser(post))  // 设置点赞按钮的图标
+        loadAndSetUserAvatar(userId: post.user_id)  // 加载设置头像
 
         self.post = post // 保存当前帖子信息
         
@@ -219,6 +220,20 @@ class PostCollectionViewCell: UICollectionViewCell {
         delegate?.didTapLikeButton(onPostWithID: postID)
     }
 
-    
+    // MARK: - 通过用户的user_id得到这个用户的头像
+    func loadAndSetUserAvatar(userId: Int) {
+        let urlString = "http://34.86.14.173/api/images/users/\(userId)/"
+        AF.request(urlString).responseData { [weak self] response in
+            guard let self = self else { return }
+
+            DispatchQueue.main.async {
+                if let data = response.data, response.response?.statusCode == 200, let image = UIImage(data: data) {
+                    self.logoImage.image = image
+                } else {
+                    self.logoImage.image = UIImage(named: "head")  // 默认头像
+                }
+            }
+        }
+    }
 }
 

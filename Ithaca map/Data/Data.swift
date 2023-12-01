@@ -5,6 +5,8 @@
 //  Created by Qiandao Liu on 11/17/23.
 //
 
+import UIKit
+
 
 // 一个location的最详细的信息
 struct Map: Codable {
@@ -26,6 +28,11 @@ struct Feature: Codable {
 // 用于判断该用户名和密码是否正确
 struct ResponseDataSignin: Codable {
     var verify: Bool
+    var user_id: Int
+}
+
+// 用于注册的时候，后端返回当前注册的用户的user_id
+struct idReturn: Codable {
     var user_id: Int
 }
 
