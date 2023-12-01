@@ -7,8 +7,11 @@
 
 import UIKit
 import AVFoundation
+import Alamofire
 
 class ViewController: UIViewController {
+    
+    var featureToLocations: [String: [Int]] = [:]
     
     // MARK: - Properties (view) 第一步，创建一个collectionView
     
@@ -19,20 +22,44 @@ class ViewController: UIViewController {
     private let IFbutton = UIButton(type: .custom)
     private let SPbutton = UIButton(type: .custom)
     private let SUNbutton = UIButton(type: .custom)
-    private let SWbutton = UIButton(type: .custom)
-
+    private let JPPbutton = UIButton(type: .custom)
+    private let LTTbutton = UIButton(type: .custom)
+    private let BFbutton = UIButton(type: .custom)
+    private let WFbutton = UIButton(type: .custom)
+    private let PFbutton = UIButton(type: .custom)
+    private let KWLbutton = UIButton(type: .custom)
     
     // MARK: - Properties (data)
     
-    private let filterOptions = ["All", "Fall", "Park", "...", "Odyssey"]
+    private let filterOptions = ["All", "Waterfall", "Park", "Lake"]
+    
+    // MARK: - Networking
+    
+    // demmyData
+    private var dummyData: [Map] = []
     
     // MARK: - viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.own.white
+        self.navigationItem.hidesBackButton = true // 隐藏返回键
+        loadFeatureLocations() // 调用，判断每个feature有哪些locations
         
-        // MARK: Title "ChefOS" Setting
+        // 给每个location加一个tag，作为前端的id
+        LFbutton.tag = 1
+        IFbutton.tag = 2
+        SPbutton.tag = 3
+        SUNbutton.tag = 4
+        JPPbutton.tag = 5
+        LTTbutton.tag = 6
+        BFbutton.tag = 7
+        WFbutton.tag = 8
+        PFbutton.tag = 9
+        KWLbutton.tag = 10
+        
+        // MARK: - 定义所有在主页面上的地图订
+        // 同时setup地图图片的位置
         
         // setup mapImage
         view.addSubview(mapImage)
@@ -60,69 +87,294 @@ class ViewController: UIViewController {
             LFbutton.widthAnchor.constraint(equalToConstant: 20),
             LFbutton.heightAnchor.constraint(equalToConstant: 28)
         ])
-        
         // IFbutton: Ithaca Fall
         view.addSubview(IFbutton)
         view.bringSubviewToFront(IFbutton)
         IFbutton.setImage(UIImage(named: "map_pin"), for: .normal)
         IFbutton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            IFbutton.topAnchor.constraint(equalTo: view.topAnchor, constant: 450),
-            IFbutton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 250),
+            IFbutton.topAnchor.constraint(equalTo: view.topAnchor, constant: 235),
+            IFbutton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 238),
             IFbutton.widthAnchor.constraint(equalToConstant: 20),
             IFbutton.heightAnchor.constraint(equalToConstant: 28)
         ])
-        
         // SPbutton: Stewart Park
         view.addSubview(SPbutton)
         view.bringSubviewToFront(SPbutton)
         SPbutton.setImage(UIImage(named: "map_pin"), for: .normal)
         SPbutton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            SPbutton.topAnchor.constraint(equalTo: view.topAnchor, constant: 530),
-            SPbutton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 55),
+            SPbutton.topAnchor.constraint(equalTo: view.topAnchor, constant: 190),
+            SPbutton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 200),
             SPbutton.widthAnchor.constraint(equalToConstant: 20),
             SPbutton.heightAnchor.constraint(equalToConstant: 28)
         ])
-        
         // SUNbutton: Sunset Park
         view.addSubview(SUNbutton)
         view.bringSubviewToFront(SUNbutton)
         SUNbutton.setImage(UIImage(named: "map_pin"), for: .normal)
         SUNbutton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            SUNbutton.topAnchor.constraint(equalTo: view.topAnchor, constant: 440),
-            SUNbutton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 150),
+            SUNbutton.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
+            SUNbutton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 235),
             SUNbutton.widthAnchor.constraint(equalToConstant: 20),
             SUNbutton.heightAnchor.constraint(equalToConstant: 28)
         ])
-        
-        // SWbutton: Sapsucker Woods
-        view.addSubview(SWbutton)
-        view.bringSubviewToFront(SWbutton)
-        SWbutton.setImage(UIImage(named: "map_pin"), for: .normal)
-        SWbutton.translatesAutoresizingMaskIntoConstraints = false
+        // JPPbutton: Jennings Park Pond
+        view.addSubview(JPPbutton)
+        view.bringSubviewToFront(JPPbutton)
+        JPPbutton.setImage(UIImage(named: "map_pin"), for: .normal)
+        JPPbutton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            SWbutton.topAnchor.constraint(equalTo: view.topAnchor, constant: 650),
-            SWbutton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 88),
-            SWbutton.widthAnchor.constraint(equalToConstant: 20),
-            SWbutton.heightAnchor.constraint(equalToConstant: 28)
+            JPPbutton.topAnchor.constraint(equalTo: view.topAnchor, constant: 760),
+            JPPbutton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 260),
+            JPPbutton.widthAnchor.constraint(equalToConstant: 20),
+            JPPbutton.heightAnchor.constraint(equalToConstant: 28)
+        ])
+        // LTTbutton: Lake Treman Trail
+        view.addSubview(LTTbutton)
+        view.bringSubviewToFront(LTTbutton)
+        LTTbutton.setImage(UIImage(named: "map_pin"), for: .normal)
+        LTTbutton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            LTTbutton.topAnchor.constraint(equalTo: view.topAnchor, constant: 500),
+            LTTbutton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 180),
+            LTTbutton.widthAnchor.constraint(equalToConstant: 20),
+            LTTbutton.heightAnchor.constraint(equalToConstant: 28)
+        ])
+        // BFbutton: Buttermilk Falls
+        view.addSubview(BFbutton)
+        view.bringSubviewToFront(BFbutton)
+        BFbutton.setImage(UIImage(named: "map_pin"), for: .normal)
+        BFbutton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            BFbutton.topAnchor.constraint(equalTo: view.topAnchor, constant: 405),
+            BFbutton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 140),
+            BFbutton.widthAnchor.constraint(equalToConstant: 20),
+            BFbutton.heightAnchor.constraint(equalToConstant: 28)
+        ])
+        // WFbutton: Wells Falls
+        view.addSubview(WFbutton)
+        view.bringSubviewToFront(WFbutton)
+        WFbutton.setImage(UIImage(named: "map_pin"), for: .normal)
+        WFbutton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            WFbutton.topAnchor.constraint(equalTo: view.topAnchor, constant: 330),
+            WFbutton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 270),
+            WFbutton.widthAnchor.constraint(equalToConstant: 20),
+            WFbutton.heightAnchor.constraint(equalToConstant: 28)
+        ])
+        // PFbutton: Potter's Falls
+        view.addSubview(PFbutton)
+        view.bringSubviewToFront(PFbutton)
+        PFbutton.setImage(UIImage(named: "map_pin"), for: .normal)
+        PFbutton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            PFbutton.topAnchor.constraint(equalTo: view.topAnchor, constant: 400),
+            PFbutton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 345),
+            PFbutton.widthAnchor.constraint(equalToConstant: 20),
+            PFbutton.heightAnchor.constraint(equalToConstant: 28)
+        ])
+        // KWLbutton: Kingsbury Woods Loop
+        view.addSubview(KWLbutton)
+        view.bringSubviewToFront(KWLbutton)
+        KWLbutton.setImage(UIImage(named: "map_pin"), for: .normal)
+        KWLbutton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            KWLbutton.topAnchor.constraint(equalTo: view.topAnchor, constant: 630),
+            KWLbutton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 144),
+            KWLbutton.widthAnchor.constraint(equalToConstant: 20),
+            KWLbutton.heightAnchor.constraint(equalToConstant: 28)
         ])
         
+        // MARK: - 点击地图订后的反应
         
         LFbutton.addTarget(self, action: #selector(LFButtonTapped), for: .touchUpInside)
-
+        IFbutton.addTarget(self, action: #selector(IFButtonTapped), for: .touchUpInside)
+        SPbutton.addTarget(self, action: #selector(SPButtonTapped), for: .touchUpInside)
+        SUNbutton.addTarget(self, action: #selector(SUNButtonTapped), for: .touchUpInside)
+        JPPbutton.addTarget(self, action: #selector(JPPButtonTapped), for: .touchUpInside)
+        LTTbutton.addTarget(self, action: #selector(LTTButtonTapped), for: .touchUpInside)
+        BFbutton.addTarget(self, action: #selector(BFButtonTapped), for: .touchUpInside)
+        WFbutton.addTarget(self, action: #selector(WFButtonTapped), for: .touchUpInside)
+        PFbutton.addTarget(self, action: #selector(PFButtonTapped), for: .touchUpInside)
+        KWLbutton.addTarget(self, action: #selector(KWLButtonTapped), for: .touchUpInside)
         
         setupHorizontalCollectionView()
     }
     
     @objc func LFButtonTapped() {
-        let sampleVC = LowerFalls_ViewController()
-        navigationController?.pushViewController(sampleVC, animated: false)
+        fetchLocationDetails(locationId: LFbutton.tag) { [weak self] locationDetails in
+            guard let self = self, let details = locationDetails else { return }
+
+            DispatchQueue.main.async {
+                let detailVC = Detail_ViewController()
+                detailVC.videoFileName = "LowerFalls"
+                detailVC.name = details.name
+                detailVC.descriptionText = details.description
+                detailVC.latitude = details.latitude
+                detailVC.longitude = details.longitude
+                detailVC.address = details.address
+
+                self.navigationController?.pushViewController(detailVC, animated: false)
+            }
+        }
+    }
+    @objc func IFButtonTapped() {
+        fetchLocationDetails(locationId: IFbutton.tag) { [weak self] locationDetails in
+            guard let self = self, let details = locationDetails else { return }
+
+            DispatchQueue.main.async {
+                let detailVC = Detail_ViewController()
+                detailVC.videoFileName = "IthacaFalls"
+                detailVC.name = details.name
+                detailVC.descriptionText = details.description
+                detailVC.latitude = details.latitude
+                detailVC.longitude = details.longitude
+                detailVC.address = details.address
+
+                self.navigationController?.pushViewController(detailVC, animated: false)
+            }
+        }
+    }
+    @objc func SPButtonTapped() {
+        fetchLocationDetails(locationId: SPbutton.tag) { [weak self] locationDetails in
+            guard let self = self, let details = locationDetails else { return }
+
+            DispatchQueue.main.async {
+                let detailVC = Detail_ViewController()
+                detailVC.videoFileName = "StewartPark"
+                detailVC.name = details.name
+                detailVC.descriptionText = details.description
+                detailVC.latitude = details.latitude
+                detailVC.longitude = details.longitude
+                detailVC.address = details.address
+
+                self.navigationController?.pushViewController(detailVC, animated: false)
+            }
+        }
+    }
+    @objc func SUNButtonTapped() {
+        fetchLocationDetails(locationId: SUNbutton.tag) { [weak self] locationDetails in
+            guard let self = self, let details = locationDetails else { return }
+
+            DispatchQueue.main.async {
+                let detailVC = Detail_ViewController()
+                detailVC.videoFileName = "SunsetPark"
+                detailVC.name = details.name
+                detailVC.descriptionText = details.description
+                detailVC.latitude = details.latitude
+                detailVC.longitude = details.longitude
+                detailVC.address = details.address
+
+                self.navigationController?.pushViewController(detailVC, animated: false)
+            }
+        }
+    }
+    @objc func JPPButtonTapped() {
+        fetchLocationDetails(locationId: JPPbutton.tag) { [weak self] locationDetails in
+            guard let self = self, let details = locationDetails else { return }
+
+            DispatchQueue.main.async {
+                let detailVC = Detail_ViewController()
+                detailVC.videoFileName = "Jennings"
+                detailVC.name = details.name
+                detailVC.descriptionText = details.description
+                detailVC.latitude = details.latitude
+                detailVC.longitude = details.longitude
+                detailVC.address = details.address
+
+                self.navigationController?.pushViewController(detailVC, animated: false)
+            }
+        }
+    }
+    @objc func LTTButtonTapped() {
+        fetchLocationDetails(locationId: LTTbutton.tag) { [weak self] locationDetails in
+            guard let self = self, let details = locationDetails else { return }
+
+            DispatchQueue.main.async {
+                let detailVC = Detail_ViewController()
+                detailVC.videoFileName = "Treman"
+                detailVC.name = details.name
+                detailVC.descriptionText = details.description
+                detailVC.latitude = details.latitude
+                detailVC.longitude = details.longitude
+                detailVC.address = details.address
+
+                self.navigationController?.pushViewController(detailVC, animated: false)
+            }
+        }
+    }
+    @objc func BFButtonTapped() {
+        fetchLocationDetails(locationId: BFbutton.tag) { [weak self] locationDetails in
+            guard let self = self, let details = locationDetails else { return }
+
+            DispatchQueue.main.async {
+                let detailVC = Detail_ViewController()
+                detailVC.videoFileName = "Buttermilk"
+                detailVC.name = details.name
+                detailVC.descriptionText = details.description
+                detailVC.latitude = details.latitude
+                detailVC.longitude = details.longitude
+                detailVC.address = details.address
+
+                self.navigationController?.pushViewController(detailVC, animated: false)
+            }
+        }
+    }
+    @objc func WFButtonTapped() {
+        fetchLocationDetails(locationId: WFbutton.tag) { [weak self] locationDetails in
+            guard let self = self, let details = locationDetails else { return }
+
+            DispatchQueue.main.async {
+                let detailVC = Detail_ViewController()
+                detailVC.videoFileName = "Wells"
+                detailVC.name = details.name
+                detailVC.descriptionText = details.description
+                detailVC.latitude = details.latitude
+                detailVC.longitude = details.longitude
+                detailVC.address = details.address
+
+                self.navigationController?.pushViewController(detailVC, animated: false)
+            }
+        }
+    }
+    @objc func PFButtonTapped() {
+        fetchLocationDetails(locationId: PFbutton.tag) { [weak self] locationDetails in
+            guard let self = self, let details = locationDetails else { return }
+
+            DispatchQueue.main.async {
+                let detailVC = Detail_ViewController()
+                detailVC.videoFileName = "Potter"
+                detailVC.name = details.name
+                detailVC.descriptionText = details.description
+                detailVC.latitude = details.latitude
+                detailVC.longitude = details.longitude
+                detailVC.address = details.address
+
+                self.navigationController?.pushViewController(detailVC, animated: false)
+            }
+        }
+    }
+    @objc func KWLButtonTapped() {
+        fetchLocationDetails(locationId: KWLbutton.tag) { [weak self] locationDetails in
+            guard let self = self, let details = locationDetails else { return }
+
+            DispatchQueue.main.async {
+                let detailVC = Detail_ViewController()
+                detailVC.videoFileName = "Kings"
+                detailVC.name = details.name
+                detailVC.descriptionText = details.description
+                detailVC.latitude = details.latitude
+                detailVC.longitude = details.longitude
+                detailVC.address = details.address
+
+                self.navigationController?.pushViewController(detailVC, animated: false)
+            }
+        }
     }
     
     // MARK: - Set Up Views  "Make a setup collectionView method"
-    
     
     private func setupHorizontalCollectionView() {
         let layout = UICollectionViewFlowLayout()
@@ -151,7 +403,54 @@ class ViewController: UIViewController {
             hCollectionView.heightAnchor.constraint(equalToConstant: 32 + 16 + 16)
         ])
     }
+    
+    // MARK: - filter
+    // 调用API，查看不同的feature中分别有哪些locations
+    // 当使用过滤，隐藏这些不在该feature中的locations
+    
+    private func loadFeatureLocations() {
+        let url = URL(string: "http://34.86.14.173/api/features/")!
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, error == nil else {
+                print("Error fetching features: \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
+
+            do {
+                let featureLocations = try JSONDecoder().decode(FeatureLocations.self, from: data)
+                DispatchQueue.main.async {
+                    self.processFeatureLocations(featureLocations.features)
+                }
+            } catch {
+                print("Error decoding features: \(error)")
+            }
+        }.resume()
+    }
+    
+    private func processFeatureLocations(_ features: [FeatureDetail]) {
+        for feature in features {
+            featureToLocations[feature.name] = feature.locations
+        }
+        updateButtonsForSelectedFilter()
+    }
+
+    func updateButtonsForSelectedFilter() {
+        let selectedFilter = self.selectedFilter
+        // 遍历所有的按钮
+        for button in [LFbutton, IFbutton, SPbutton, SUNbutton, JPPbutton, LTTbutton, BFbutton, WFbutton, PFbutton, KWLbutton] {
+            let buttonId = button.tag // 用tag比较location id，有就显示，没有就hide
+
+            if selectedFilter == "All" {
+                button.isHidden = false
+            } else {
+                // 根据 featureToLocations 字典判断是否显示按钮
+                let shouldShow = featureToLocations[selectedFilter]?.contains(buttonId) ?? false
+                button.isHidden = !shouldShow
+            }
+        }
+    }
 }
+
 
 // MARK: - UICollectionView Delegate
 
@@ -162,6 +461,7 @@ extension ViewController: UICollectionViewDelegate {
             print("collectionView didSelectItemAt called for section \(indexPath.section), row \(indexPath.row)")
             // 处理 hCollectionView 的单元格选中事件
             selectedFilter = filterOptions[indexPath.row]
+            updateButtonsForSelectedFilter()
             hCollectionView.reloadData()
         }
     }
@@ -174,7 +474,7 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == hCollectionView {
-            return filterOptions.count  // 4 difficulties
+            return filterOptions.count
         }
         return 0
     }
@@ -190,30 +490,25 @@ extension ViewController: UICollectionViewDataSource {
         return UICollectionViewCell()
     }
     
-    private func filteredRecipes() -> [Map] {
-        if selectedFilter == "All" {
-            return ViewController.dummyData
-        } else {
-            let filteredData = ViewController.dummyData.filter { $0.feature == selectedFilter }
-            print("Filtered data for \(selectedFilter): \(filteredData)")
-            return filteredData
+    // MARK: - 用于把具体的调用的方法
+    // 判断点了哪个按钮，把这个按钮的tag加入API
+    // GET API，得到该景区具体信息
+    // 该位置的具体的信息被定义为一个变量locationDetails，传给上方objc方法
+    
+    func fetchLocationDetails(locationId: Int, completion: @escaping (Map?) -> Void) {
+        let urlString = "http://34.86.14.173/api/locations/\(locationId)/"
+        print("now the API: \(urlString)")
+        AF.request(urlString).responseDecodable(of: Map.self) { response in
+            switch response.result {
+            case .success(let locationDetails):
+                UserDefaults.standard.set(locationId, forKey: "currentLocationId")  // 存储，将在Post_ViewController中调用
+                completion(locationDetails)
+            case .failure(let error):
+                print("Error fetching location details: \(error)")
+                completion(nil)
+            }
         }
+        print("now the location_id: \(locationId)")
     }
+
 }
-
-
-// MARK: - UICollectionViewDelegateFlowLayout
-
-extension ViewController {
-    static var dummyData: [Map] = [
-        Map(name: "Lower Fall", description: "A good swim place", position: "Park Rd, Ithaca, NY 14850", imageUrl: "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F8368708.jpg&q=60&c=sc&orient=true&poi=auto&h=512", feature: "Fall"
-            ),
-        Map(name: "Ithaca Fall", description: "The biggest Fall in ithaca", position: "Ithaca Falls Trail, Ithaca, NY 14850", imageUrl: "https://www.allrecipes.com/thmb/wRSDpUgu8VR2PpQtjGq97cuk8Fo=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/237311-slow-cooker-mac-and-cheese-DDMFS-4x3-9b4a15f2c3344c1da22b034bc3b35683.jpg", feature: "Fall"),
-        Map(name: "Stewart Park", description: "Good place for bird watching", position: "1 James L Gibbs Dr, Ithaca, NY 14850", imageUrl: "https://www.allrecipes.com/thmb/cLLmeWO7j9YYI66vL3eZzUL_NKQ=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/7501402crockpot-italian-chicken-recipe-fabeveryday4x3-223051c7188841cb8fd7189958c62f3d.jpg", feature: "Park"),
-        Map(name: "Sunset Park", description: "best place to see sunset!", position: "200 Sunset Park Dr, Ithaca, NY 14850", imageUrl: "https://www.allrecipes.com/thmb/neJT4JLJz7ks8D0Rkvzf8fRufWY=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/6900-dumplings-DDMFS-4x3-c03fe714205d4f24bd74b99768142864.jpg", feature: "Park"),
-        Map(name: "Sapsucker Woods", description: " to see a few birds! Lots of Chickadees, Downey, Hairy & Pileated Woodpeckers. Fun watching the Heron and Mallards in the pond.", position: "159 Sapsucker Woods Rd, Ithaca, NY 14850", imageUrl: "https://www.allrecipes.com/thmb/llWmU-j1PO7kCPvKkzQnfmeBf0M=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/21766-roasted-pork-loin-DDMFS-4x3-42648a2d6acf4ef3a05124ef5010c4fb.jpg", feature: "Park")
-    ]
-}
-
-
-

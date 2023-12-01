@@ -37,12 +37,12 @@ class FilterCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Configure
     
-    func configure(res: Map) {
-        
-        let title = res.feature
-        feature.setTitle(title, for: .normal)
-        
-    }
+//    func configure(res: Map) {
+//        
+//        let title = res.feature.first // 需要改，也许可以不需要
+//        feature.setTitle(title, for: .normal)
+//        
+//    }
     
     // MARK: - Set Up Views
     
@@ -66,10 +66,10 @@ class FilterCollectionViewCell: UICollectionViewCell {
     
     func updateButtonColor(isSelected: Bool) {
         if isSelected {
-            feature.backgroundColor = UIColor.own.deepOrange
+            feature.backgroundColor = UIColor.own.deepOrangeTran
             feature.setTitleColor(UIColor.own.white, for: .normal)
         } else {
-            feature.backgroundColor = UIColor.own.deepCream
+            feature.backgroundColor = UIColor.own.deepCreamTran
             feature.setTitleColor(UIColor.own.black, for: .normal)
         }
     }
