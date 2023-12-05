@@ -1,6 +1,11 @@
 # Ithaca-Traveller
 ### Explore Ithaca's Hidden Gems with IthacaTraveller
 
+A project for Cornell App Dev Hack Challenge FA 2023
+
+
+# ✨✨✨ BEST BACKEND AWARD ✨✨✨
+
 # GitHub Repositories
 [Ithaca Traveller - IOS](https://github.com/HackGroup1/IthacaTraveller-IOS)
 
